@@ -1,0 +1,429 @@
+EESchema Schematic File Version 2
+LIBS:DC24Badge-rescue
+LIBS:power
+LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:DC24Badge
+LIBS:DC24Badge-cache
+EELAYER 25 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 2 5
+Title ""
+Date "11 jun 2016"
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L HT16K33 U1
+U 1 1 574C44C7
+P 2700 3150
+F 0 "U1" H 2450 3300 60  0000 C CNN
+F 1 "HT16K33" H 2450 3400 60  0000 C CNN
+F 2 "Housings_SOIC:SOIC-28_7.5x17.9mm_Pitch1.27mm" H 2600 3150 60  0000 C CNN
+F 3 "" H 2600 3150 60  0000 C CNN
+	1    2700 3150
+	1    0    0    -1  
+$EndComp
+$Comp
+L DUAL_12_SEGMENT LED1
+U 1 1 574C499C
+P 5200 4650
+F 0 "LED1" H 5200 4650 60  0000 C CNN
+F 1 "DUAL_12_SEGMENT" H 5200 4800 60  0000 C CNN
+F 2 "DC24Badge:LTP-3786E" H 5200 4650 60  0001 C CNN
+F 3 "" H 5200 4650 60  0000 C CNN
+F 4 "859-LTP-3784E" H 5200 4650 60  0001 C CNN "MouserPN"
+	1    5200 4650
+	1    0    0    -1  
+$EndComp
+$Comp
+L DUAL_12_SEGMENT LED2
+U 1 1 574C49A9
+P 6850 4650
+F 0 "LED2" H 6850 4650 60  0000 C CNN
+F 1 "DUAL_12_SEGMENT" H 6850 4800 60  0000 C CNN
+F 2 "DC24Badge:LTP-3786E" H 6850 4650 60  0001 C CNN
+F 3 "" H 6850 4650 60  0000 C CNN
+	1    6850 4650
+	1    0    0    -1  
+$EndComp
+$Comp
+L DUAL_12_SEGMENT LED3
+U 1 1 574C49AF
+P 8500 4650
+F 0 "LED3" H 8500 4650 60  0000 C CNN
+F 1 "DUAL_12_SEGMENT" H 8500 4800 60  0000 C CNN
+F 2 "DC24Badge:LTP-3786E" H 8500 4650 60  0001 C CNN
+F 3 "" H 8500 4650 60  0000 C CNN
+	1    8500 4650
+	1    0    0    -1  
+$EndComp
+$Comp
+L DUAL_12_SEGMENT LED4
+U 1 1 574C49BF
+P 10150 4650
+F 0 "LED4" H 10150 4650 60  0000 C CNN
+F 1 "DUAL_12_SEGMENT" H 10150 4800 60  0000 C CNN
+F 2 "DC24Badge:LTP-3786E" H 10150 4650 60  0001 C CNN
+F 3 "" H 10150 4650 60  0000 C CNN
+	1    10150 4650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3550 2050 9450 2050
+Wire Wire Line
+	9450 2050 9450 3750
+Wire Wire Line
+	7800 2050 7800 3750
+Connection ~ 7800 2050
+Wire Wire Line
+	6150 2050 6150 3750
+Connection ~ 6150 2050
+Wire Wire Line
+	4500 2050 4500 3750
+Connection ~ 4500 2050
+Wire Wire Line
+	3550 2150 9550 2150
+Wire Wire Line
+	9550 2150 9550 3750
+Wire Wire Line
+	4600 2150 4600 3750
+Connection ~ 4600 2150
+Wire Wire Line
+	6250 2150 6250 3750
+Connection ~ 6250 2150
+Wire Wire Line
+	7900 2150 7900 3750
+Connection ~ 7900 2150
+Wire Wire Line
+	3550 2250 9650 2250
+Wire Wire Line
+	9650 2250 9650 3750
+Wire Wire Line
+	3550 2350 9750 2350
+Wire Wire Line
+	9750 2350 9750 3750
+Wire Wire Line
+	3550 2450 9850 2450
+Wire Wire Line
+	9850 2450 9850 3750
+Wire Wire Line
+	3550 2550 9950 2550
+Wire Wire Line
+	9950 2550 9950 3750
+Wire Wire Line
+	3550 2650 10050 2650
+Wire Wire Line
+	10050 2650 10050 3750
+Wire Wire Line
+	3550 2750 10150 2750
+Wire Wire Line
+	10150 2750 10150 3750
+Wire Wire Line
+	3550 2850 10250 2850
+Wire Wire Line
+	10250 2850 10250 3750
+Wire Wire Line
+	3550 2950 10350 2950
+Wire Wire Line
+	10350 2950 10350 3750
+Wire Wire Line
+	3550 3450 10850 3450
+Wire Wire Line
+	3550 3350 10750 3350
+Wire Wire Line
+	10850 3450 10850 3750
+Wire Wire Line
+	10750 3350 10750 3750
+Wire Wire Line
+	3550 3250 10650 3250
+Wire Wire Line
+	10650 3250 10650 3750
+Wire Wire Line
+	3550 3150 10550 3150
+Wire Wire Line
+	10550 3150 10550 3750
+Wire Wire Line
+	3550 3050 10450 3050
+Wire Wire Line
+	10450 3050 10450 3750
+Wire Wire Line
+	8000 3750 8000 2250
+Connection ~ 8000 2250
+Wire Wire Line
+	8100 3750 8100 2350
+Connection ~ 8100 2350
+Wire Wire Line
+	8200 3750 8200 2450
+Connection ~ 8200 2450
+Wire Wire Line
+	8300 3750 8300 2550
+Connection ~ 8300 2550
+Wire Wire Line
+	8400 3750 8400 2650
+Connection ~ 8400 2650
+Wire Wire Line
+	8500 3750 8500 2750
+Connection ~ 8500 2750
+Wire Wire Line
+	8600 2850 8600 3750
+Connection ~ 8600 2850
+Wire Wire Line
+	8700 3750 8700 2950
+Connection ~ 8700 2950
+Wire Wire Line
+	8800 3750 8800 3050
+Connection ~ 8800 3050
+Wire Wire Line
+	8900 3750 8900 3150
+Connection ~ 8900 3150
+Wire Wire Line
+	9000 3750 9000 3250
+Connection ~ 9000 3250
+Wire Wire Line
+	9100 3750 9100 3350
+Connection ~ 9100 3350
+Wire Wire Line
+	9200 3750 9200 3450
+Connection ~ 9200 3450
+Wire Wire Line
+	6350 3750 6350 2250
+Connection ~ 6350 2250
+Wire Wire Line
+	6450 3750 6450 2350
+Connection ~ 6450 2350
+Wire Wire Line
+	6550 3750 6550 2450
+Connection ~ 6550 2450
+Wire Wire Line
+	6650 3750 6650 2550
+Connection ~ 6650 2550
+Wire Wire Line
+	6750 3750 6750 2650
+Connection ~ 6750 2650
+Wire Wire Line
+	6850 3750 6850 2750
+Connection ~ 6850 2750
+Wire Wire Line
+	6950 3750 6950 2850
+Connection ~ 6950 2850
+Wire Wire Line
+	7050 3750 7050 2950
+Connection ~ 7050 2950
+Wire Wire Line
+	7150 3050 7150 3750
+Connection ~ 7150 3050
+Wire Wire Line
+	7250 3750 7250 3150
+Connection ~ 7250 3150
+Wire Wire Line
+	7350 3750 7350 3250
+Connection ~ 7350 3250
+Wire Wire Line
+	7450 3750 7450 3350
+Connection ~ 7450 3350
+Wire Wire Line
+	7550 3750 7550 3450
+Connection ~ 7550 3450
+Wire Wire Line
+	4700 3750 4700 2250
+Connection ~ 4700 2250
+Wire Wire Line
+	4800 3750 4800 2350
+Connection ~ 4800 2350
+Wire Wire Line
+	4900 3750 4900 2450
+Connection ~ 4900 2450
+Wire Wire Line
+	5000 3750 5000 2550
+Connection ~ 5000 2550
+Wire Wire Line
+	5100 3750 5100 2650
+Connection ~ 5100 2650
+Wire Wire Line
+	5200 3750 5200 2750
+Connection ~ 5200 2750
+Wire Wire Line
+	5300 3750 5300 2850
+Connection ~ 5300 2850
+Wire Wire Line
+	5400 3750 5400 2950
+Connection ~ 5400 2950
+Wire Wire Line
+	5500 3750 5500 3050
+Connection ~ 5500 3050
+Wire Wire Line
+	5600 3750 5600 3150
+Connection ~ 5600 3150
+Wire Wire Line
+	5700 3750 5700 3250
+Connection ~ 5700 3250
+Wire Wire Line
+	5800 3750 5800 3350
+Connection ~ 5800 3350
+Wire Wire Line
+	5900 3750 5900 3450
+Connection ~ 5900 3450
+Wire Wire Line
+	3550 3750 4300 3750
+Wire Wire Line
+	4300 3750 4300 5550
+Wire Wire Line
+	4300 5550 5150 5550
+Wire Wire Line
+	5150 5550 5150 5450
+Wire Wire Line
+	5250 5450 5250 5600
+Wire Wire Line
+	5250 5600 4250 5600
+Wire Wire Line
+	4250 5600 4250 3850
+Wire Wire Line
+	4250 3850 3550 3850
+Wire Wire Line
+	6800 5450 6800 5650
+Wire Wire Line
+	6800 5650 4200 5650
+Wire Wire Line
+	4200 5650 4200 3950
+Wire Wire Line
+	4200 3950 3550 3950
+Wire Wire Line
+	6900 5450 6900 5700
+Wire Wire Line
+	6900 5700 4150 5700
+Wire Wire Line
+	4150 5700 4150 4050
+Wire Wire Line
+	4150 4050 3550 4050
+Wire Wire Line
+	8450 5450 8450 5750
+Wire Wire Line
+	8450 5750 4100 5750
+Wire Wire Line
+	4100 5750 4100 4150
+Wire Wire Line
+	4100 4150 3550 4150
+Wire Wire Line
+	8550 5450 8550 5800
+Wire Wire Line
+	8550 5800 4050 5800
+Wire Wire Line
+	4050 5800 4050 4250
+Wire Wire Line
+	4050 4250 3550 4250
+Wire Wire Line
+	10100 5450 10100 5850
+Wire Wire Line
+	10100 5850 4000 5850
+Wire Wire Line
+	4000 5850 4000 4350
+Wire Wire Line
+	4000 4350 3550 4350
+Wire Wire Line
+	10200 5450 10200 5900
+Wire Wire Line
+	10200 5900 3950 5900
+Wire Wire Line
+	3950 5900 3950 4450
+Wire Wire Line
+	3950 4450 3550 4450
+Wire Wire Line
+	1750 4450 1600 4450
+Wire Wire Line
+	1600 4450 1600 4600
+Wire Wire Line
+	1750 2250 1550 2250
+Wire Wire Line
+	1750 2350 1550 2350
+Text HLabel 1550 2250 0    60   BiDi ~ 0
+SDA
+Text HLabel 1550 2350 0    60   BiDi ~ 0
+SCL
+$Comp
+L +5V #PWR3
+U 1 1 574C8483
+P 1650 1850
+F 0 "#PWR3" H 1650 1940 20  0001 C CNN
+F 1 "+5V" H 1650 1940 30  0000 C CNN
+F 2 "" H 1650 1850 60  0000 C CNN
+F 3 "" H 1650 1850 60  0000 C CNN
+	1    1650 1850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1650 1850 1650 2050
+Wire Wire Line
+	1550 2050 1750 2050
+$Comp
+L C-RESCUE-DC24Badge C1
+U 1 1 574C88B1
+P 1350 2050
+F 0 "C1" H 1350 2150 40  0000 L CNN
+F 1 "0.1uF, 6.3V" H 1356 1965 40  0000 L CNN
+F 2 "Capacitors_SMD:C_0805_HandSoldering" H 1450 1900 30  0000 C CNN
+F 3 "~" H 1350 2050 60  0000 C CNN
+F 4 "710-885012207072" H 1350 2050 60  0001 C CNN "MouserPN"
+	1    1350 2050
+	0    -1   -1   0   
+$EndComp
+Connection ~ 1650 2050
+Wire Wire Line
+	1150 2050 1000 2050
+Wire Wire Line
+	1000 2050 1000 2100
+$Comp
+L GND #PWR1
+U 1 1 575E593B
+P 1000 2100
+F 0 "#PWR1" H 1000 1850 50  0001 C CNN
+F 1 "GND" H 1000 1950 50  0000 C CNN
+F 2 "" H 1000 2100 50  0000 C CNN
+F 3 "" H 1000 2100 50  0000 C CNN
+	1    1000 2100
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR2
+U 1 1 575E59FC
+P 1600 4600
+F 0 "#PWR2" H 1600 4350 50  0001 C CNN
+F 1 "GND" H 1600 4450 50  0000 C CNN
+F 2 "" H 1600 4600 50  0000 C CNN
+F 3 "" H 1600 4600 50  0000 C CNN
+	1    1600 4600
+	1    0    0    -1  
+$EndComp
+$EndSCHEMATC

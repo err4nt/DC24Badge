@@ -1,0 +1,150 @@
+eeschema (22-Jun-2014 BZR 4027)-stable  >> Creation date: Sat 11 Jun 2016 07:01:58 PM CDT
+#Cmp ( order = Reference )
+| C1         0.1uF, 6.3V ; 0805        
+| C2         0.1uF, 6.3V ; 0805        
+| C3         22uF, 6.3V  ; 0805        
+| C4         0.1uF, 6.3V ; 0805        
+| C5         10uF, 6.3V  ; 0805        
+| C6         10uF, 6.3V  ; 0805        
+| C7         22uF, 6.3V  ; 0805        
+| C8         22uF, 6.3V  ; 0805        
+| C9         22uF, 6.3V  ; 0805        
+| C10        0.1uF       ; 0805        
+| C11        27pF        ; 0805        
+| C12        0.1uF       ; 0805        
+| C13        27pF        ; 0805        
+| C14        0.1uF       ; 0805        
+| C15        0.1uF       ; 0805        
+| C16        4.7uF       ; 0805        
+| C17        4.7uF       ; 0805        
+| C18        3.3uF       ; 0805        
+| C19        0.1uF       ; 0805        
+| CON1       USB-MINI-B  ;             
+| D1         LED         ; LED-0805    
+| D2         LED         ; LED-0805    
+| LED1       DUAL_12_SEGMENT;             
+| LED2       DUAL_12_SEGMENT;             
+| LED3       DUAL_12_SEGMENT;             
+| LED4       DUAL_12_SEGMENT;             
+| P1         CONN_6      ;             
+| P2         CONN_6      ;             
+| P3         CONN_10     ;             
+| P4         CONN_8X2    ;             
+| P5         CONN_8X2    ;             
+| P6         CONN_10X2   ;             
+| PAD1       PAD         ;             
+| PAD2       PAD         ;             
+| R1         4.7K        ; 0805        
+| R2         4.7K        ; 0805        
+| R3         4.7K        ; 0805        
+| R4         10K         ; 0805        
+| R5         4.7K        ; 0805        
+| R6         4.7K        ; 0805        
+| R7         4.7K        ; 0805        
+| R8         4.7K        ; 0805        
+| R9         10K         ; 0805        
+| R10        10K         ; 0805        
+| R11        1M          ; 0805        
+| R12        12K         ; 0805        
+| R13        0           ; 0805        
+| R14        0           ; 0805        
+| R15        1K          ; 0805        
+| R16        220         ; 0805        
+| R17        220         ; 0805        
+| R18        10K         ; 0805        
+| R19        2.2K        ; 0805        
+| R20        10K         ; 0805        
+| R21        10K         ; 0805        
+| SW1        SW_PUSH     ; ~           
+| SW2        SW_PUSH     ; ~           
+| SW3        SW_PUSH     ; ~           
+| SW4        SW_PUSH     ; ~           
+| SW5        SW_PUSH     ; ~           
+| SW6        SPST        ; ~           
+| U1         HT16K33     ; SO28        
+| U2         ESP-12-E    ;             
+| U3         RM24C64C    ; SOIC-8      
+| U4         LXDC2SCAAB-352;             
+| U5         LXDC44AAAC-169;             
+| U6         LT1129CST-3.3; SOT-223     
+| U7         FT2232H     ; VQFP64      
+| U8         TXS0108E    ; SSOP20      
+| U9         93C56R      ;             
+| X1         CRYSTAL     ; ~           
+#End Cmp
+
+#Cmp ( order = Value )
+| 27pF         C11       ; 0805        
+| 27pF         C13       ; 0805        
+| 0.1uF, 6.3V  C1        ; 0805        
+| 0.1uF, 6.3V  C2        ; 0805        
+| 0.1uF, 6.3V  C4        ; 0805        
+| 0.1uF        C10       ; 0805        
+| 0.1uF        C12       ; 0805        
+| 0.1uF        C14       ; 0805        
+| 0.1uF        C15       ; 0805        
+| 0.1uF        C19       ; 0805        
+| 3.3uF        C18       ; 0805        
+| 4.7uF        C16       ; 0805        
+| 4.7uF        C17       ; 0805        
+| 10uF, 6.3V   C5        ; 0805        
+| 10uF, 6.3V   C6        ; 0805        
+| 22uF, 6.3V   C3        ; 0805        
+| 22uF, 6.3V   C7        ; 0805        
+| 22uF, 6.3V   C8        ; 0805        
+| 22uF, 6.3V   C9        ; 0805        
+| USB-MINI-B   CON1      ;             
+| LED          D1        ; LED-0805    
+| LED          D2        ; LED-0805    
+| DUAL_12_SEGMENT LED1      ;             
+| DUAL_12_SEGMENT LED2      ;             
+| DUAL_12_SEGMENT LED3      ;             
+| DUAL_12_SEGMENT LED4      ;             
+| CONN_6       P1        ;             
+| CONN_6       P2        ;             
+| CONN_10      P3        ;             
+| CONN_8X2     P4        ;             
+| CONN_8X2     P5        ;             
+| CONN_10X2    P6        ;             
+| PAD          PAD1      ;             
+| PAD          PAD2      ;             
+| 0            R13       ; 0805        
+| 0            R14       ; 0805        
+| 220          R16       ; 0805        
+| 220          R17       ; 0805        
+| 1K           R15       ; 0805        
+| 2.2K         R19       ; 0805        
+| 4.7K         R1        ; 0805        
+| 4.7K         R2        ; 0805        
+| 4.7K         R3        ; 0805        
+| 4.7K         R5        ; 0805        
+| 4.7K         R6        ; 0805        
+| 4.7K         R7        ; 0805        
+| 4.7K         R8        ; 0805        
+| 10K          R4        ; 0805        
+| 10K          R9        ; 0805        
+| 10K          R10       ; 0805        
+| 10K          R18       ; 0805        
+| 10K          R20       ; 0805        
+| 10K          R21       ; 0805        
+| 12K          R12       ; 0805        
+| 1M           R11       ; 0805        
+| SW_PUSH      SW1       ; ~           
+| SW_PUSH      SW2       ; ~           
+| SW_PUSH      SW3       ; ~           
+| SW_PUSH      SW4       ; ~           
+| SW_PUSH      SW5       ; ~           
+| SPST         SW6       ; ~           
+| ESP-12-E     U2        ;             
+| LXDC2SCAAB-352 U4        ;             
+| LXDC44AAAC-169 U5        ;             
+| 93C56R       U9        ;             
+| HT16K33      U1        ; SO28        
+| RM24C64C     U3        ; SOIC-8      
+| LT1129CST-3.3 U6        ; SOT-223     
+| TXS0108E     U8        ; SSOP20      
+| FT2232H      U7        ; VQFP64      
+| CRYSTAL      X1        ; ~           
+#End Cmp
+
+#End List

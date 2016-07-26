@@ -1,0 +1,1974 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export version="D">
+  <design>
+    <source>/home/gondul/DC24Badge/Hardware/DC24Badge.sch</source>
+    <date>Thu 30 Jun 2016 09:13:25 AM CDT</date>
+    <tool>Eeschema 4.0.2+dfsg1-2~bpo8+1-stable</tool>
+    <sheet number="1" name="/" tstamps="/">
+      <title_block>
+        <title/>
+        <company/>
+        <rev/>
+        <date>11 jun 2016</date>
+        <source>DC24Badge.sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+      </title_block>
+    </sheet>
+    <sheet number="2" name="/Display/" tstamps="/574C3BC3/">
+      <title_block>
+        <title/>
+        <company/>
+        <rev/>
+        <date>11 jun 2016</date>
+        <source>display.sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+      </title_block>
+    </sheet>
+    <sheet number="3" name="/ESP12E/" tstamps="/574C6F05/">
+      <title_block>
+        <title/>
+        <company/>
+        <rev/>
+        <date>11 jun 2016</date>
+        <source>esp12e.sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+      </title_block>
+    </sheet>
+    <sheet number="4" name="/Power/" tstamps="/574C7883/">
+      <title_block>
+        <title/>
+        <company/>
+        <rev/>
+        <date>11 jun 2016</date>
+        <source>power.sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+      </title_block>
+    </sheet>
+    <sheet number="5" name="/FT2232H/" tstamps="/574C9163/">
+      <title_block>
+        <title/>
+        <company/>
+        <rev/>
+        <date>11 jun 2016</date>
+        <source>FT2232H.sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+      </title_block>
+    </sheet>
+  </design>
+  <components>
+    <comp ref="U1">
+      <value>HT16K33</value>
+      <footprint>Housings_SOIC:SOIC-28_7.5x17.9mm_Pitch1.27mm</footprint>
+      <libsource lib="DC24Badge" part="HT16K33"/>
+      <sheetpath names="/Display/" tstamps="/574C3BC3/"/>
+      <tstamp>574C44C7</tstamp>
+    </comp>
+    <comp ref="LED1">
+      <value>DUAL_12_SEGMENT</value>
+      <footprint>DC24Badge:LTP-3786E</footprint>
+      <fields>
+        <field name="MouserPN">859-LTP-3784E</field>
+      </fields>
+      <libsource lib="DC24Badge" part="DUAL_12_SEGMENT"/>
+      <sheetpath names="/Display/" tstamps="/574C3BC3/"/>
+      <tstamp>574C499C</tstamp>
+    </comp>
+    <comp ref="LED2">
+      <value>DUAL_12_SEGMENT</value>
+      <footprint>DC24Badge:LTP-3786E</footprint>
+      <libsource lib="DC24Badge" part="DUAL_12_SEGMENT"/>
+      <sheetpath names="/Display/" tstamps="/574C3BC3/"/>
+      <tstamp>574C49A9</tstamp>
+    </comp>
+    <comp ref="LED3">
+      <value>DUAL_12_SEGMENT</value>
+      <footprint>DC24Badge:LTP-3786E</footprint>
+      <libsource lib="DC24Badge" part="DUAL_12_SEGMENT"/>
+      <sheetpath names="/Display/" tstamps="/574C3BC3/"/>
+      <tstamp>574C49AF</tstamp>
+    </comp>
+    <comp ref="LED4">
+      <value>DUAL_12_SEGMENT</value>
+      <footprint>DC24Badge:LTP-3786E</footprint>
+      <libsource lib="DC24Badge" part="DUAL_12_SEGMENT"/>
+      <sheetpath names="/Display/" tstamps="/574C3BC3/"/>
+      <tstamp>574C49BF</tstamp>
+    </comp>
+    <comp ref="C1">
+      <value>0.1uF, 6.3V</value>
+      <footprint>Capacitors_SMD:C_0805_HandSoldering</footprint>
+      <fields>
+        <field name="MouserPN">710-885012207072</field>
+      </fields>
+      <libsource lib="DC24Badge-rescue" part="C-RESCUE-DC24Badge"/>
+      <sheetpath names="/Display/" tstamps="/574C3BC3/"/>
+      <tstamp>574C88B1</tstamp>
+    </comp>
+    <comp ref="R6">
+      <value>4.7K</value>
+      <footprint>Resistors_SMD:R_0805_HandSoldering</footprint>
+      <fields>
+        <field name="MouserPN">667-ERJ-6GEYJ472V</field>
+      </fields>
+      <libsource lib="DC24Badge-rescue" part="R-RESCUE-DC24Badge"/>
+      <sheetpath names="/ESP12E/" tstamps="/574C6F05/"/>
+      <tstamp>574C6F44</tstamp>
+    </comp>
+    <comp ref="R5">
+      <value>4.7K</value>
+      <footprint>Resistors_SMD:R_0805_HandSoldering</footprint>
+      <fields>
+        <field name="MouserPN">667-ERJ-6GEYJ472V</field>
+      </fields>
+      <libsource lib="DC24Badge-rescue" part="R-RESCUE-DC24Badge"/>
+      <sheetpath names="/ESP12E/" tstamps="/574C6F05/"/>
+      <tstamp>574C6F51</tstamp>
+    </comp>
+    <comp ref="C3">
+      <value>22uF, 6.3V</value>
+      <footprint>Capacitors_SMD:C_0805_HandSoldering</footprint>
+      <fields>
+        <field name="MouserPN">77-VJ0805G226MXYTBC</field>
+      </fields>
+      <libsource lib="DC24Badge-rescue" part="C-RESCUE-DC24Badge"/>
+      <sheetpath names="/ESP12E/" tstamps="/574C6F05/"/>
+      <tstamp>574C6FF1</tstamp>
+    </comp>
+    <comp ref="C4">
+      <value>0.1uF, 6.3V</value>
+      <footprint>Capacitors_SMD:C_0805_HandSoldering</footprint>
+      <fields>
+        <field name="MouserPN">710-885012207072</field>
+      </fields>
+      <libsource lib="DC24Badge-rescue" part="C-RESCUE-DC24Badge"/>
+      <sheetpath names="/ESP12E/" tstamps="/574C6F05/"/>
+      <tstamp>574C700D</tstamp>
+    </comp>
+    <comp ref="U3">
+      <value>RM24C64C</value>
+      <footprint>Housings_SOIC:SOIC-8_3.9x4.9mm_Pitch1.27mm</footprint>
+      <fields>
+        <field name="MouserPN">988-RM24EP128A-BSNCB</field>
+      </fields>
+      <libsource lib="DC24Badge" part="RM24C64C"/>
+      <sheetpath names="/ESP12E/" tstamps="/574C6F05/"/>
+      <tstamp>574C9FEF</tstamp>
+    </comp>
+    <comp ref="C2">
+      <value>0.1uF, 6.3V</value>
+      <footprint>Capacitors_SMD:C_0805_HandSoldering</footprint>
+      <fields>
+        <field name="MouserPN">710-885012207072</field>
+      </fields>
+      <libsource lib="DC24Badge-rescue" part="C-RESCUE-DC24Badge"/>
+      <sheetpath names="/ESP12E/" tstamps="/574C6F05/"/>
+      <tstamp>574CA04D</tstamp>
+    </comp>
+    <comp ref="R1">
+      <value>4.7K</value>
+      <footprint>Resistors_SMD:R_0805_HandSoldering</footprint>
+      <fields>
+        <field name="MouserPN">667-ERJ-6GEYJ472V</field>
+      </fields>
+      <libsource lib="DC24Badge-rescue" part="R-RESCUE-DC24Badge"/>
+      <sheetpath names="/ESP12E/" tstamps="/574C6F05/"/>
+      <tstamp>575C92FD</tstamp>
+    </comp>
+    <comp ref="R2">
+      <value>4.7K</value>
+      <footprint>Resistors_SMD:R_0805_HandSoldering</footprint>
+      <fields>
+        <field name="MouserPN">667-ERJ-6GEYJ472V</field>
+      </fields>
+      <libsource lib="DC24Badge-rescue" part="R-RESCUE-DC24Badge"/>
+      <sheetpath names="/ESP12E/" tstamps="/574C6F05/"/>
+      <tstamp>575C9303</tstamp>
+    </comp>
+    <comp ref="R3">
+      <value>4.7K</value>
+      <footprint>Resistors_SMD:R_0805_HandSoldering</footprint>
+      <fields>
+        <field name="MouserPN">667-ERJ-6GEYJ472V</field>
+      </fields>
+      <libsource lib="DC24Badge-rescue" part="R-RESCUE-DC24Badge"/>
+      <sheetpath names="/ESP12E/" tstamps="/574C6F05/"/>
+      <tstamp>575C9309</tstamp>
+    </comp>
+    <comp ref="R7">
+      <value>4.7K</value>
+      <footprint>Resistors_SMD:R_0805_HandSoldering</footprint>
+      <fields>
+        <field name="MouserPN">667-ERJ-6GEYJ472V</field>
+      </fields>
+      <libsource lib="DC24Badge-rescue" part="R-RESCUE-DC24Badge"/>
+      <sheetpath names="/ESP12E/" tstamps="/574C6F05/"/>
+      <tstamp>575C930F</tstamp>
+    </comp>
+    <comp ref="SW1">
+      <value>SW_PUSH</value>
+      <footprint>Buttons_Switches_SMD:SW_SPST_EVQP0</footprint>
+      <fields>
+        <field name="MouserPN">667-EVQ-PLHA15</field>
+      </fields>
+      <libsource lib="device" part="SW_PUSH"/>
+      <sheetpath names="/ESP12E/" tstamps="/574C6F05/"/>
+      <tstamp>575C948B</tstamp>
+    </comp>
+    <comp ref="SW2">
+      <value>SW_PUSH</value>
+      <footprint>Buttons_Switches_SMD:SW_SPST_EVQP0</footprint>
+      <fields>
+        <field name="MouserPN">667-EVQ-PLHA15</field>
+      </fields>
+      <libsource lib="device" part="SW_PUSH"/>
+      <sheetpath names="/ESP12E/" tstamps="/574C6F05/"/>
+      <tstamp>575C9498</tstamp>
+    </comp>
+    <comp ref="SW3">
+      <value>SW_PUSH</value>
+      <footprint>Buttons_Switches_SMD:SW_SPST_EVQP0</footprint>
+      <fields>
+        <field name="MouserPN">667-EVQ-PLHA15</field>
+      </fields>
+      <libsource lib="device" part="SW_PUSH"/>
+      <sheetpath names="/ESP12E/" tstamps="/574C6F05/"/>
+      <tstamp>575C949E</tstamp>
+    </comp>
+    <comp ref="SW4">
+      <value>SW_PUSH</value>
+      <footprint>Buttons_Switches_SMD:SW_SPST_EVQP0</footprint>
+      <fields>
+        <field name="MouserPN">667-EVQ-PLHA15</field>
+      </fields>
+      <libsource lib="device" part="SW_PUSH"/>
+      <sheetpath names="/ESP12E/" tstamps="/574C6F05/"/>
+      <tstamp>575C9974</tstamp>
+    </comp>
+    <comp ref="R9">
+      <value>4.7k</value>
+      <footprint>Resistors_SMD:R_0805_HandSoldering</footprint>
+      <fields>
+        <field name="MouserPN">588-AS08J1002ET</field>
+      </fields>
+      <libsource lib="DC24Badge-rescue" part="R-RESCUE-DC24Badge"/>
+      <sheetpath names="/ESP12E/" tstamps="/574C6F05/"/>
+      <tstamp>575CAA5A</tstamp>
+    </comp>
+    <comp ref="SW5">
+      <value>SW_PUSH</value>
+      <footprint>Buttons_Switches_SMD:SW_SPST_EVQP0</footprint>
+      <fields>
+        <field name="MouserPN">667-EVQ-PLHA15</field>
+      </fields>
+      <libsource lib="device" part="SW_PUSH"/>
+      <sheetpath names="/ESP12E/" tstamps="/574C6F05/"/>
+      <tstamp>575CAB73</tstamp>
+    </comp>
+    <comp ref="R10">
+      <value>4.7K</value>
+      <footprint>Resistors_SMD:R_0805_HandSoldering</footprint>
+      <fields>
+        <field name="MouserPN">588-AS08J1002ET</field>
+      </fields>
+      <libsource lib="DC24Badge-rescue" part="R-RESCUE-DC24Badge"/>
+      <sheetpath names="/ESP12E/" tstamps="/574C6F05/"/>
+      <tstamp>575CAE29</tstamp>
+    </comp>
+    <comp ref="U10">
+      <value>ESP-12E</value>
+      <footprint>ESP8266:ESP-12E</footprint>
+      <libsource lib="DC24Badge-cache" part="ESP-12E"/>
+      <sheetpath names="/ESP12E/" tstamps="/574C6F05/"/>
+      <tstamp>575D8008</tstamp>
+    </comp>
+    <comp ref="P1">
+      <value>CONN_01X08</value>
+      <footprint>Pin_Headers:Pin_Header_Straight_1x08</footprint>
+      <libsource lib="conn" part="CONN_01X08"/>
+      <sheetpath names="/ESP12E/" tstamps="/574C6F05/"/>
+      <tstamp>576030AF</tstamp>
+    </comp>
+    <comp ref="P2">
+      <value>CONN_01X10</value>
+      <footprint>Pin_Headers:Pin_Header_Straight_1x10</footprint>
+      <libsource lib="conn" part="CONN_01X10"/>
+      <sheetpath names="/ESP12E/" tstamps="/574C6F05/"/>
+      <tstamp>57605732</tstamp>
+    </comp>
+    <comp ref="R4">
+      <value>4.7K</value>
+      <footprint>Resistors_SMD:R_0805_HandSoldering</footprint>
+      <fields>
+        <field name="MouserPN">588-AS08J1002ET</field>
+      </fields>
+      <libsource lib="DC24Badge-rescue" part="R-RESCUE-DC24Badge"/>
+      <sheetpath names="/ESP12E/" tstamps="/574C6F05/"/>
+      <tstamp>576D4BBB</tstamp>
+    </comp>
+    <comp ref="R8">
+      <value>4.7K</value>
+      <footprint>Resistors_SMD:R_0805_HandSoldering</footprint>
+      <fields>
+        <field name="MouserPN">588-AS08J1002ET</field>
+      </fields>
+      <libsource lib="DC24Badge-rescue" part="R-RESCUE-DC24Badge"/>
+      <sheetpath names="/ESP12E/" tstamps="/574C6F05/"/>
+      <tstamp>576D50AD</tstamp>
+    </comp>
+    <comp ref="R13">
+      <value>4.7K</value>
+      <footprint>Resistors_SMD:R_0805_HandSoldering</footprint>
+      <fields>
+        <field name="MouserPN">588-AS08J1002ET</field>
+      </fields>
+      <libsource lib="DC24Badge-rescue" part="R-RESCUE-DC24Badge"/>
+      <sheetpath names="/ESP12E/" tstamps="/574C6F05/"/>
+      <tstamp>576D529B</tstamp>
+    </comp>
+    <comp ref="U4">
+      <value>LXDC2SCAAB-352</value>
+      <footprint>DC24Badge:LXDC2SCAAB-352</footprint>
+      <fields>
+        <field name="MouserPN">81-LXDC2SCAAB-352</field>
+      </fields>
+      <libsource lib="DC24Badge" part="LXDC2SCAAB-352"/>
+      <sheetpath names="/Power/" tstamps="/574C7883/"/>
+      <tstamp>574C78DF</tstamp>
+    </comp>
+    <comp ref="SW6">
+      <value>SPST</value>
+      <footprint>DC24Badge:MS-100406</footprint>
+      <fields>
+        <field name="MouserPN">10TC605</field>
+      </fields>
+      <libsource lib="device" part="SPST"/>
+      <sheetpath names="/Power/" tstamps="/574C7883/"/>
+      <tstamp>574C78EE</tstamp>
+    </comp>
+    <comp ref="C7">
+      <value>22uF, 6.3V</value>
+      <footprint>Capacitors_SMD:C_0805_HandSoldering</footprint>
+      <fields>
+        <field name="MouserPN">77-VJ0805G226MXYTBC</field>
+      </fields>
+      <libsource lib="DC24Badge-rescue" part="C-RESCUE-DC24Badge"/>
+      <sheetpath names="/Power/" tstamps="/574C7883/"/>
+      <tstamp>574C7995</tstamp>
+    </comp>
+    <comp ref="C5">
+      <value>10uF, 6.3V</value>
+      <footprint>Capacitors_SMD:C_0805_HandSoldering</footprint>
+      <fields>
+        <field name="MouserPN">77-VJ0805G106KXQTBC</field>
+      </fields>
+      <libsource lib="DC24Badge-rescue" part="C-RESCUE-DC24Badge"/>
+      <sheetpath names="/Power/" tstamps="/574C7883/"/>
+      <tstamp>574C7D3B</tstamp>
+    </comp>
+    <comp ref="U5">
+      <value>LXDC44AAAC-169</value>
+      <footprint>DC24Badge:LXDC44A</footprint>
+      <fields>
+        <field name="MouserPN">81-LXDC44AAAC-169</field>
+      </fields>
+      <libsource lib="DC24Badge" part="LXDC44AAAC-169"/>
+      <sheetpath names="/Power/" tstamps="/574C7883/"/>
+      <tstamp>574C7F5A</tstamp>
+    </comp>
+    <comp ref="C9">
+      <value>22uF, 6.3V</value>
+      <footprint>Capacitors_SMD:C_0805_HandSoldering</footprint>
+      <fields>
+        <field name="MouserPN">77-VJ0805G226MXYTBC</field>
+      </fields>
+      <libsource lib="DC24Badge-rescue" part="C-RESCUE-DC24Badge"/>
+      <sheetpath names="/Power/" tstamps="/574C7883/"/>
+      <tstamp>574C7FE7</tstamp>
+    </comp>
+    <comp ref="C6">
+      <value>10uF, 6.3V</value>
+      <footprint>Capacitors_SMD:C_0805_HandSoldering</footprint>
+      <fields>
+        <field name="MouserPN">77-VJ0805G106KXQTBC</field>
+      </fields>
+      <libsource lib="DC24Badge-rescue" part="C-RESCUE-DC24Badge"/>
+      <sheetpath names="/Power/" tstamps="/574C7883/"/>
+      <tstamp>574C80ED</tstamp>
+    </comp>
+    <comp ref="R11">
+      <value>1M</value>
+      <footprint>Resistors_SMD:R_0805_HandSoldering</footprint>
+      <fields>
+        <field name="MouserPN">603-RT0805FRD071ML</field>
+      </fields>
+      <libsource lib="DC24Badge-rescue" part="R-RESCUE-DC24Badge"/>
+      <sheetpath names="/Power/" tstamps="/574C7883/"/>
+      <tstamp>574C8264</tstamp>
+    </comp>
+    <comp ref="C8">
+      <value>22uF, 6.3V</value>
+      <footprint>Capacitors_SMD:C_0805_HandSoldering</footprint>
+      <fields>
+        <field name="MouserPN">77-VJ0805G226MXYTBC</field>
+      </fields>
+      <libsource lib="DC24Badge-rescue" part="C-RESCUE-DC24Badge"/>
+      <sheetpath names="/Power/" tstamps="/574C7883/"/>
+      <tstamp>574C8686</tstamp>
+    </comp>
+    <comp ref="P3">
+      <value>CONN_01X02</value>
+      <footprint>Pin_Headers:Pin_Header_Straight_1x02</footprint>
+      <libsource lib="conn" part="CONN_01X02"/>
+      <sheetpath names="/Power/" tstamps="/574C7883/"/>
+      <tstamp>575E866F</tstamp>
+    </comp>
+    <comp ref="U7">
+      <value>FT2232H</value>
+      <footprint>Housings_QFP:LQFP-64_10x10mm_Pitch0.5mm</footprint>
+      <fields>
+        <field name="MouserPN">895-FT2232HL</field>
+      </fields>
+      <libsource lib="DC24Badge" part="FT2232H"/>
+      <sheetpath names="/FT2232H/" tstamps="/574C9163/"/>
+      <tstamp>574C9419</tstamp>
+    </comp>
+    <comp ref="P6">
+      <value>CONN_10X2</value>
+      <footprint>Pin_Headers:Pin_Header_Straight_2x10</footprint>
+      <fields>
+        <field name="MouserPN">653-XG4C-2031</field>
+      </fields>
+      <libsource lib="DC24Badge-cache" part="CONN_10X2"/>
+      <sheetpath names="/FT2232H/" tstamps="/574C9163/"/>
+      <tstamp>574C9957</tstamp>
+    </comp>
+    <comp ref="U8">
+      <value>TXS0108E</value>
+      <footprint>Housings_SSOP:SSOP-20_4.4x6.5mm_Pitch0.65mm</footprint>
+      <fields>
+        <field name="MouserPN">595-TXS0108EPWR</field>
+      </fields>
+      <libsource lib="DC24Badge" part="TXS0108E"/>
+      <sheetpath names="/FT2232H/" tstamps="/574C9163/"/>
+      <tstamp>574C9966</tstamp>
+    </comp>
+    <comp ref="CON1">
+      <value>USB-MINI-B</value>
+      <footprint>Connect:USB_Micro-B</footprint>
+      <fields>
+        <field name="MouserPN">798-ZX62D-B-5PA830</field>
+      </fields>
+      <libsource lib="DC24Badge-cache" part="USB-MINI-B"/>
+      <sheetpath names="/FT2232H/" tstamps="/574C9163/"/>
+      <tstamp>574EF807</tstamp>
+    </comp>
+    <comp ref="X1">
+      <value>CRYSTAL</value>
+      <footprint>Crystals:HC-49V</footprint>
+      <fields>
+        <field name="MouserPN">520-HCA1200-SX</field>
+      </fields>
+      <libsource lib="DC24Badge-cache" part="CRYSTAL"/>
+      <sheetpath names="/FT2232H/" tstamps="/574C9163/"/>
+      <tstamp>574F00BD</tstamp>
+    </comp>
+    <comp ref="C11">
+      <value>27pF</value>
+      <footprint>Capacitors_SMD:C_0805_HandSoldering</footprint>
+      <fields>
+        <field name="MouserPN">80-C0805C270J5G</field>
+      </fields>
+      <libsource lib="DC24Badge-rescue" part="C-RESCUE-DC24Badge"/>
+      <sheetpath names="/FT2232H/" tstamps="/574C9163/"/>
+      <tstamp>574F00CC</tstamp>
+    </comp>
+    <comp ref="C13">
+      <value>27pF</value>
+      <footprint>Capacitors_SMD:C_0805_HandSoldering</footprint>
+      <fields>
+        <field name="MouserPN">80-C0805C270J5G</field>
+      </fields>
+      <libsource lib="DC24Badge-rescue" part="C-RESCUE-DC24Badge"/>
+      <sheetpath names="/FT2232H/" tstamps="/574C9163/"/>
+      <tstamp>574F00D9</tstamp>
+    </comp>
+    <comp ref="U9">
+      <value>93C56R</value>
+      <footprint>Housings_SOIC:SOIC-8_3.9x4.9mm_Pitch1.27mm</footprint>
+      <fields>
+        <field name="MouserPN">511-M93C56-RMN6TP</field>
+      </fields>
+      <libsource lib="DC24Badge" part="93C56R"/>
+      <sheetpath names="/FT2232H/" tstamps="/574C9163/"/>
+      <tstamp>5751C93A</tstamp>
+    </comp>
+    <comp ref="C19">
+      <value>0.1uF</value>
+      <footprint>Capacitors_SMD:C_0805_HandSoldering</footprint>
+      <fields>
+        <field name="MouserPN">710-885012207072</field>
+      </fields>
+      <libsource lib="DC24Badge-rescue" part="C-RESCUE-DC24Badge"/>
+      <sheetpath names="/FT2232H/" tstamps="/574C9163/"/>
+      <tstamp>5751C94D</tstamp>
+    </comp>
+    <comp ref="R19">
+      <value>2.2K</value>
+      <footprint>Resistors_SMD:R_0805_HandSoldering</footprint>
+      <fields>
+        <field name="MouserPN">667-ERJ-6GEYJ222V</field>
+      </fields>
+      <libsource lib="DC24Badge-rescue" part="R-RESCUE-DC24Badge"/>
+      <sheetpath names="/FT2232H/" tstamps="/574C9163/"/>
+      <tstamp>5751D2DD</tstamp>
+    </comp>
+    <comp ref="R21">
+      <value>10K</value>
+      <footprint>Resistors_SMD:R_0805_HandSoldering</footprint>
+      <fields>
+        <field name="MouserPN">588-AS08J1002ET</field>
+      </fields>
+      <libsource lib="DC24Badge-rescue" part="R-RESCUE-DC24Badge"/>
+      <sheetpath names="/FT2232H/" tstamps="/574C9163/"/>
+      <tstamp>5751D404</tstamp>
+    </comp>
+    <comp ref="R20">
+      <value>10K</value>
+      <footprint>Resistors_SMD:R_0805_HandSoldering</footprint>
+      <fields>
+        <field name="MouserPN">588-AS08J1002ET</field>
+      </fields>
+      <libsource lib="DC24Badge-rescue" part="R-RESCUE-DC24Badge"/>
+      <sheetpath names="/FT2232H/" tstamps="/574C9163/"/>
+      <tstamp>575C2D23</tstamp>
+    </comp>
+    <comp ref="R18">
+      <value>10K</value>
+      <footprint>Resistors_SMD:R_0805_HandSoldering</footprint>
+      <fields>
+        <field name="MouserPN">588-AS08J1002ET</field>
+      </fields>
+      <libsource lib="DC24Badge-rescue" part="R-RESCUE-DC24Badge"/>
+      <sheetpath names="/FT2232H/" tstamps="/574C9163/"/>
+      <tstamp>575C2D29</tstamp>
+    </comp>
+    <comp ref="R15">
+      <value>1K</value>
+      <footprint>Resistors_SMD:R_0805_HandSoldering</footprint>
+      <fields>
+        <field name="MouserPN">603-RC0805FR-071KL</field>
+      </fields>
+      <libsource lib="DC24Badge-rescue" part="R-RESCUE-DC24Badge"/>
+      <sheetpath names="/FT2232H/" tstamps="/574C9163/"/>
+      <tstamp>575C30AE</tstamp>
+    </comp>
+    <comp ref="R12">
+      <value>12K</value>
+      <footprint>Resistors_SMD:R_0805_HandSoldering</footprint>
+      <fields>
+        <field name="MouserPN">667-ERJ-6GEYJ123V</field>
+      </fields>
+      <libsource lib="DC24Badge-rescue" part="R-RESCUE-DC24Badge"/>
+      <sheetpath names="/FT2232H/" tstamps="/574C9163/"/>
+      <tstamp>575C33D6</tstamp>
+    </comp>
+    <comp ref="C16">
+      <value>4.7uF</value>
+      <footprint>Capacitors_Tantalum_SMD:TantalC_SizeB_EIA-3528_HandSoldering</footprint>
+      <fields>
+        <field name="MouserPN">647-F931E475MBA</field>
+      </fields>
+      <libsource lib="DC24Badge-rescue" part="CP1-RESCUE-DC24Badge"/>
+      <sheetpath names="/FT2232H/" tstamps="/574C9163/"/>
+      <tstamp>575C6DEB</tstamp>
+    </comp>
+    <comp ref="C17">
+      <value>4.7uF</value>
+      <footprint>Capacitors_Tantalum_SMD:TantalC_SizeB_EIA-3528_HandSoldering</footprint>
+      <fields>
+        <field name="MouserPN">647-F931E475MBA</field>
+      </fields>
+      <libsource lib="DC24Badge-rescue" part="CP1-RESCUE-DC24Badge"/>
+      <sheetpath names="/FT2232H/" tstamps="/574C9163/"/>
+      <tstamp>575C6DF8</tstamp>
+    </comp>
+    <comp ref="C15">
+      <value>0.1uF</value>
+      <footprint>Capacitors_SMD:C_0805_HandSoldering</footprint>
+      <fields>
+        <field name="MouserPN">710-885012207072</field>
+      </fields>
+      <libsource lib="DC24Badge-rescue" part="C-RESCUE-DC24Badge"/>
+      <sheetpath names="/FT2232H/" tstamps="/574C9163/"/>
+      <tstamp>575C70A6</tstamp>
+    </comp>
+    <comp ref="C14">
+      <value>0.1uF</value>
+      <footprint>Capacitors_SMD:C_0805_HandSoldering</footprint>
+      <fields>
+        <field name="MouserPN">710-885012207072</field>
+      </fields>
+      <libsource lib="DC24Badge-rescue" part="C-RESCUE-DC24Badge"/>
+      <sheetpath names="/FT2232H/" tstamps="/574C9163/"/>
+      <tstamp>575C70AC</tstamp>
+    </comp>
+    <comp ref="C12">
+      <value>0.1uF</value>
+      <footprint>Capacitors_SMD:C_0805_HandSoldering</footprint>
+      <fields>
+        <field name="MouserPN">710-885012207072</field>
+      </fields>
+      <libsource lib="DC24Badge-rescue" part="C-RESCUE-DC24Badge"/>
+      <sheetpath names="/FT2232H/" tstamps="/574C9163/"/>
+      <tstamp>575C7FEC</tstamp>
+    </comp>
+    <comp ref="C10">
+      <value>0.1uF</value>
+      <footprint>Capacitors_SMD:C_0805_HandSoldering</footprint>
+      <fields>
+        <field name="MouserPN">710-885012207072</field>
+      </fields>
+      <libsource lib="DC24Badge-rescue" part="C-RESCUE-DC24Badge"/>
+      <sheetpath names="/FT2232H/" tstamps="/574C9163/"/>
+      <tstamp>575C7FF2</tstamp>
+    </comp>
+    <comp ref="C18">
+      <value>3.3uF</value>
+      <footprint>Capacitors_SMD:C_0805_HandSoldering</footprint>
+      <fields>
+        <field name="MouserPN">77-VJ0805V335ZXQTBC</field>
+      </fields>
+      <libsource lib="DC24Badge-rescue" part="C-RESCUE-DC24Badge"/>
+      <sheetpath names="/FT2232H/" tstamps="/574C9163/"/>
+      <tstamp>575C84D6</tstamp>
+    </comp>
+    <comp ref="D1">
+      <value>LED</value>
+      <footprint>LEDs:LED_0805</footprint>
+      <fields>
+        <field name="MouserPN">720-LGR971-KN-1</field>
+      </fields>
+      <libsource lib="DC24Badge-rescue" part="LED-RESCUE-DC24Badge"/>
+      <sheetpath names="/FT2232H/" tstamps="/574C9163/"/>
+      <tstamp>575C8BC3</tstamp>
+    </comp>
+    <comp ref="D2">
+      <value>LED</value>
+      <footprint>LEDs:LED_0805</footprint>
+      <fields>
+        <field name="MouserPN">720-LHR974-LP-1</field>
+      </fields>
+      <libsource lib="DC24Badge-rescue" part="LED-RESCUE-DC24Badge"/>
+      <sheetpath names="/FT2232H/" tstamps="/574C9163/"/>
+      <tstamp>575C8BD0</tstamp>
+    </comp>
+    <comp ref="R16">
+      <value>220</value>
+      <footprint>Resistors_SMD:R_0805_HandSoldering</footprint>
+      <fields>
+        <field name="MouserPN">667-ERJ-6GEYJ221V</field>
+      </fields>
+      <libsource lib="DC24Badge-rescue" part="R-RESCUE-DC24Badge"/>
+      <sheetpath names="/FT2232H/" tstamps="/574C9163/"/>
+      <tstamp>575C8BE0</tstamp>
+    </comp>
+    <comp ref="R17">
+      <value>220</value>
+      <footprint>Resistors_SMD:R_0805_HandSoldering</footprint>
+      <fields>
+        <field name="MouserPN">667-ERJ-6GEYJ221V</field>
+      </fields>
+      <libsource lib="DC24Badge-rescue" part="R-RESCUE-DC24Badge"/>
+      <sheetpath names="/FT2232H/" tstamps="/574C9163/"/>
+      <tstamp>575C8BE6</tstamp>
+    </comp>
+    <comp ref="P4">
+      <value>CONN_8X2</value>
+      <footprint>Pin_Headers:Pin_Header_Straight_2x08</footprint>
+      <libsource lib="DC24Badge-cache" part="CONN_8X2"/>
+      <sheetpath names="/FT2232H/" tstamps="/574C9163/"/>
+      <tstamp>575C9B5E</tstamp>
+    </comp>
+    <comp ref="P5">
+      <value>CONN_8X2</value>
+      <footprint>Pin_Headers:Pin_Header_Straight_2x08</footprint>
+      <libsource lib="DC24Badge-cache" part="CONN_8X2"/>
+      <sheetpath names="/FT2232H/" tstamps="/574C9163/"/>
+      <tstamp>575CB2A2</tstamp>
+    </comp>
+    <comp ref="C20">
+      <value>0.1uF</value>
+      <footprint>Capacitors_SMD:C_0805_HandSoldering</footprint>
+      <fields>
+        <field name="MouserPN">710-885012207072</field>
+      </fields>
+      <libsource lib="DC24Badge-rescue" part="C-RESCUE-DC24Badge"/>
+      <sheetpath names="/FT2232H/" tstamps="/574C9163/"/>
+      <tstamp>57643211</tstamp>
+    </comp>
+    <comp ref="C21">
+      <value>0.1uF</value>
+      <footprint>Capacitors_SMD:C_0805_HandSoldering</footprint>
+      <fields>
+        <field name="MouserPN">710-885012207072</field>
+      </fields>
+      <libsource lib="DC24Badge-rescue" part="C-RESCUE-DC24Badge"/>
+      <sheetpath names="/FT2232H/" tstamps="/574C9163/"/>
+      <tstamp>5764402C</tstamp>
+    </comp>
+    <comp ref="C22">
+      <value>0.1uF</value>
+      <footprint>Capacitors_SMD:C_0805_HandSoldering</footprint>
+      <fields>
+        <field name="MouserPN">710-885012207072</field>
+      </fields>
+      <libsource lib="DC24Badge-rescue" part="C-RESCUE-DC24Badge"/>
+      <sheetpath names="/FT2232H/" tstamps="/574C9163/"/>
+      <tstamp>5765BDD2</tstamp>
+    </comp>
+    <comp ref="U2">
+      <value>AP1117</value>
+      <footprint>TO_SOT_Packages_SMD:SOT-223</footprint>
+      <fields>
+        <field name="MouserPN">926-LM1117MPX3.3NOPB</field>
+      </fields>
+      <libsource lib="regul" part="AP1117"/>
+      <sheetpath names="/FT2232H/" tstamps="/574C9163/"/>
+      <tstamp>5765EAB1</tstamp>
+    </comp>
+  </components>
+  <libparts>
+    <libpart lib="DC24Badge" part="93C56R">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">93C56R</field>
+      </fields>
+      <pins>
+        <pin num="1" name="CS" type="input"/>
+        <pin num="2" name="SCK" type="input"/>
+        <pin num="3" name="MOSI" type="input"/>
+        <pin num="4" name="MISO" type="input"/>
+        <pin num="5" name="VSS" type="input"/>
+        <pin num="6" name="ID" type="input"/>
+        <pin num="8" name="VCC" type="input"/>
+      </pins>
+    </libpart>
+    <libpart lib="regul" part="AP1117">
+      <aliases>
+        <alias>AP1117D15</alias>
+        <alias>AP1117D18</alias>
+        <alias>AP1117D25</alias>
+        <alias>AP1117D33</alias>
+        <alias>AP1117D50</alias>
+        <alias>AP1117E15</alias>
+        <alias>AP1117E18</alias>
+        <alias>AP1117E25</alias>
+        <alias>AP1117E33</alias>
+        <alias>AP1117E50</alias>
+        <alias>AP1117K15</alias>
+        <alias>AP1117K18</alias>
+        <alias>AP1117K25</alias>
+        <alias>AP1117K33</alias>
+        <alias>AP1117K50</alias>
+        <alias>AP1117T15</alias>
+        <alias>AP1117T18</alias>
+        <alias>AP1117T25</alias>
+        <alias>AP1117T33</alias>
+        <alias>AP1117T50</alias>
+        <alias>AP1117Y15</alias>
+        <alias>AP1117Y18</alias>
+        <alias>AP1117Y25</alias>
+        <alias>AP1117Y33</alias>
+        <alias>AP1117Y50</alias>
+      </aliases>
+      <description>Fixed/Adjustable 1A Low Dropout regulator, Positive</description>
+      <docs>http://www.diodes.com/datasheets/AP1117.pdf</docs>
+      <footprints>
+        <fp>SOT223</fp>
+        <fp>SOT89-3</fp>
+        <fp>TO220-3</fp>
+        <fp>TO252</fp>
+        <fp>TO263</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">AP1117</field>
+      </fields>
+      <pins>
+        <pin num="1" name="GND/ADJ" type="power_in"/>
+        <pin num="2" name="VO" type="power_out"/>
+        <pin num="3" name="VI" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="DC24Badge-rescue" part="C-RESCUE-DC24Badge">
+      <footprints>
+        <fp>SM*</fp>
+        <fp>C?</fp>
+        <fp>C1-1</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">C-RESCUE-DC24Badge</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="conn" part="CONN_01X02">
+      <description>Connector 01x02</description>
+      <footprints>
+        <fp>Pin_Header_Straight_1X02</fp>
+        <fp>Pin_Header_Angled_1X02</fp>
+        <fp>Socket_Strip_Straight_1X02</fp>
+        <fp>Socket_Strip_Angled_1X02</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">P</field>
+        <field name="Value">CONN_01X02</field>
+      </fields>
+      <pins>
+        <pin num="1" name="P1" type="passive"/>
+        <pin num="2" name="P2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="conn" part="CONN_01X08">
+      <description>Connector 01x08</description>
+      <footprints>
+        <fp>Pin_Header_Straight_1X08</fp>
+        <fp>Pin_Header_Angled_1X08</fp>
+        <fp>Socket_Strip_Straight_1X08</fp>
+        <fp>Socket_Strip_Angled_1X08</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">P</field>
+        <field name="Value">CONN_01X08</field>
+      </fields>
+      <pins>
+        <pin num="1" name="P1" type="passive"/>
+        <pin num="2" name="P2" type="passive"/>
+        <pin num="3" name="P3" type="passive"/>
+        <pin num="4" name="P4" type="passive"/>
+        <pin num="5" name="P5" type="passive"/>
+        <pin num="6" name="P6" type="passive"/>
+        <pin num="7" name="P7" type="passive"/>
+        <pin num="8" name="P8" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="conn" part="CONN_01X10">
+      <description>Connector 01x10</description>
+      <footprints>
+        <fp>Pin_Header_Straight_1X10</fp>
+        <fp>Pin_Header_Angled_1X10</fp>
+        <fp>Socket_Strip_Straight_1X10</fp>
+        <fp>Socket_Strip_Angled_1X10</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">P</field>
+        <field name="Value">CONN_01X10</field>
+      </fields>
+      <pins>
+        <pin num="1" name="P1" type="passive"/>
+        <pin num="2" name="P2" type="passive"/>
+        <pin num="3" name="P3" type="passive"/>
+        <pin num="4" name="P4" type="passive"/>
+        <pin num="5" name="P5" type="passive"/>
+        <pin num="6" name="P6" type="passive"/>
+        <pin num="7" name="P7" type="passive"/>
+        <pin num="8" name="P8" type="passive"/>
+        <pin num="9" name="P9" type="passive"/>
+        <pin num="10" name="P10" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="DC24Badge-cache" part="CONN_10X2">
+      <fields>
+        <field name="Reference">P</field>
+        <field name="Value">CONN_10X2</field>
+      </fields>
+      <pins>
+        <pin num="1" name="P1" type="passive"/>
+        <pin num="2" name="P2" type="passive"/>
+        <pin num="3" name="P3" type="passive"/>
+        <pin num="4" name="P4" type="passive"/>
+        <pin num="5" name="P5" type="passive"/>
+        <pin num="6" name="P6" type="passive"/>
+        <pin num="7" name="P7" type="passive"/>
+        <pin num="8" name="P8" type="passive"/>
+        <pin num="9" name="P9" type="passive"/>
+        <pin num="10" name="P10" type="passive"/>
+        <pin num="11" name="P11" type="passive"/>
+        <pin num="12" name="P12" type="passive"/>
+        <pin num="13" name="P13" type="passive"/>
+        <pin num="14" name="P14" type="passive"/>
+        <pin num="15" name="P15" type="passive"/>
+        <pin num="16" name="P16" type="passive"/>
+        <pin num="17" name="P17" type="passive"/>
+        <pin num="18" name="P18" type="passive"/>
+        <pin num="19" name="P19" type="passive"/>
+        <pin num="20" name="P20" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="DC24Badge-cache" part="CONN_8X2">
+      <fields>
+        <field name="Reference">P</field>
+        <field name="Value">CONN_8X2</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+        <pin num="3" name="~" type="passive"/>
+        <pin num="4" name="~" type="passive"/>
+        <pin num="5" name="~" type="passive"/>
+        <pin num="6" name="~" type="passive"/>
+        <pin num="7" name="~" type="passive"/>
+        <pin num="8" name="~" type="passive"/>
+        <pin num="9" name="~" type="passive"/>
+        <pin num="10" name="~" type="passive"/>
+        <pin num="11" name="~" type="passive"/>
+        <pin num="12" name="~" type="passive"/>
+        <pin num="13" name="~" type="passive"/>
+        <pin num="14" name="~" type="passive"/>
+        <pin num="15" name="~" type="passive"/>
+        <pin num="16" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="DC24Badge-rescue" part="CP1-RESCUE-DC24Badge">
+      <footprints>
+        <fp>CP*</fp>
+        <fp>SM*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">CP1-RESCUE-DC24Badge</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="DC24Badge-cache" part="CRYSTAL">
+      <fields>
+        <field name="Reference">X</field>
+        <field name="Value">CRYSTAL</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="DC24Badge" part="DUAL_12_SEGMENT">
+      <fields>
+        <field name="Reference">LED</field>
+        <field name="Value">DUAL_12_SEGMENT</field>
+      </fields>
+      <pins>
+        <pin num="1" name="E" type="input"/>
+        <pin num="2" name="M" type="power_in"/>
+        <pin num="4" name="L" type="power_in"/>
+        <pin num="5" name="K" type="power_in"/>
+        <pin num="6" name="J" type="power_in"/>
+        <pin num="7" name="D" type="input"/>
+        <pin num="8" name="DP" type="power_in"/>
+        <pin num="9" name="C" type="input"/>
+        <pin num="10" name="B" type="input"/>
+        <pin num="11" name="COM1" type="power_in"/>
+        <pin num="12" name="A" type="input"/>
+        <pin num="13" name="N" type="power_in"/>
+        <pin num="14" name="H" type="power_in"/>
+        <pin num="15" name="G" type="power_in"/>
+        <pin num="16" name="COM0" type="power_in"/>
+        <pin num="17" name="P" type="power_in"/>
+        <pin num="18" name="F" type="input"/>
+      </pins>
+    </libpart>
+    <libpart lib="DC24Badge-cache" part="ESP-12E">
+      <footprints>
+        <fp>ESP-12E</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">ESP-12E</field>
+      </fields>
+      <pins>
+        <pin num="1" name="REST" type="input"/>
+        <pin num="2" name="ADC" type="passive"/>
+        <pin num="3" name="CH_PD" type="input"/>
+        <pin num="4" name="GPIO16" type="BiDi"/>
+        <pin num="5" name="GPIO14" type="BiDi"/>
+        <pin num="6" name="GPIO12" type="BiDi"/>
+        <pin num="7" name="GPIO13" type="BiDi"/>
+        <pin num="8" name="VCC" type="power_in"/>
+        <pin num="9" name="CS0" type="BiDi"/>
+        <pin num="10" name="MISO" type="BiDi"/>
+        <pin num="11" name="GPIO9" type="BiDi"/>
+        <pin num="12" name="GPIO10" type="BiDi"/>
+        <pin num="13" name="MOSI" type="BiDi"/>
+        <pin num="14" name="SCLK" type="BiDi"/>
+        <pin num="15" name="GND" type="power_in"/>
+        <pin num="16" name="GPIO15" type="BiDi"/>
+        <pin num="17" name="GPIO2" type="BiDi"/>
+        <pin num="18" name="GPIO0" type="BiDi"/>
+        <pin num="19" name="GPIO4" type="BiDi"/>
+        <pin num="20" name="GPIO5" type="BiDi"/>
+        <pin num="21" name="RXD" type="input"/>
+        <pin num="22" name="TXD" type="output"/>
+      </pins>
+    </libpart>
+    <libpart lib="DC24Badge" part="FT2232H">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">FT2232H</field>
+      </fields>
+      <pins>
+        <pin num="1" name="GND" type="power_in"/>
+        <pin num="2" name="OSCI" type="power_in"/>
+        <pin num="3" name="OSCO" type="power_in"/>
+        <pin num="4" name="VPHY" type="power_in"/>
+        <pin num="5" name="GND" type="power_in"/>
+        <pin num="6" name="REF" type="power_in"/>
+        <pin num="7" name="DM" type="power_in"/>
+        <pin num="8" name="DP" type="power_in"/>
+        <pin num="9" name="VPLL" type="power_in"/>
+        <pin num="10" name="AGND" type="power_in"/>
+        <pin num="11" name="GND" type="power_in"/>
+        <pin num="12" name="VCORE" type="power_in"/>
+        <pin num="13" name="TEST" type="power_in"/>
+        <pin num="14" name="RESET#" type="power_in"/>
+        <pin num="15" name="GND" type="power_in"/>
+        <pin num="16" name="ADBUS0" type="power_in"/>
+        <pin num="17" name="ADBUS1" type="power_in"/>
+        <pin num="18" name="ADBUS2" type="power_in"/>
+        <pin num="19" name="ADBUS3" type="power_in"/>
+        <pin num="20" name="VCCIO" type="power_in"/>
+        <pin num="21" name="ADBUS4" type="power_in"/>
+        <pin num="22" name="ADBUS5" type="power_in"/>
+        <pin num="23" name="ADBUS6" type="power_in"/>
+        <pin num="24" name="ADBUS7" type="power_in"/>
+        <pin num="25" name="GND" type="power_in"/>
+        <pin num="26" name="ACBUS0" type="power_in"/>
+        <pin num="27" name="ACBUS1" type="power_in"/>
+        <pin num="28" name="ACBUS2" type="power_in"/>
+        <pin num="29" name="ACBUS3" type="power_in"/>
+        <pin num="30" name="ACBUS4" type="power_in"/>
+        <pin num="31" name="VCCIO" type="power_in"/>
+        <pin num="32" name="ACBUS5" type="power_in"/>
+        <pin num="33" name="ACBUS6" type="power_in"/>
+        <pin num="34" name="ACBUS7" type="power_in"/>
+        <pin num="35" name="GND" type="power_in"/>
+        <pin num="36" name="SUSPEND#" type="power_in"/>
+        <pin num="37" name="VCORE" type="power_in"/>
+        <pin num="38" name="BDBUS0" type="power_in"/>
+        <pin num="39" name="BDBUS1" type="power_in"/>
+        <pin num="40" name="BDBUS2" type="power_in"/>
+        <pin num="41" name="BDBUS3" type="power_in"/>
+        <pin num="42" name="VCCIO" type="power_in"/>
+        <pin num="43" name="BDBUS4" type="power_in"/>
+        <pin num="44" name="BDBUS5" type="power_in"/>
+        <pin num="45" name="BDBUS6" type="power_in"/>
+        <pin num="46" name="BDBUS7" type="power_in"/>
+        <pin num="47" name="GND" type="power_in"/>
+        <pin num="48" name="BCBUS0" type="power_in"/>
+        <pin num="49" name="VREGOUT" type="power_in"/>
+        <pin num="50" name="VREGIN" type="power_in"/>
+        <pin num="51" name="GND" type="power_in"/>
+        <pin num="52" name="BCBUS1" type="power_in"/>
+        <pin num="53" name="BCBUS2" type="power_in"/>
+        <pin num="54" name="BCBUS3" type="power_in"/>
+        <pin num="55" name="BCBUS4" type="power_in"/>
+        <pin num="56" name="VCCIO" type="power_in"/>
+        <pin num="57" name="BCBUS5" type="power_in"/>
+        <pin num="58" name="BCBUS6" type="power_in"/>
+        <pin num="59" name="PWRSAV#" type="power_in"/>
+        <pin num="60" name="PWREN#" type="power_in"/>
+        <pin num="61" name="EEDATA" type="input"/>
+        <pin num="62" name="EECLK" type="input"/>
+        <pin num="63" name="EECS" type="input"/>
+        <pin num="64" name="VCORE" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="DC24Badge" part="HT16K33">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">HT16K33</field>
+      </fields>
+      <pins>
+        <pin num="1" name="VSS" type="power_in"/>
+        <pin num="2" name="COM0/AD" type="power_in"/>
+        <pin num="3" name="COM1/KS0" type="power_in"/>
+        <pin num="4" name="COM2/KS1" type="power_in"/>
+        <pin num="5" name="COM3/KS2" type="power_in"/>
+        <pin num="6" name="COM4" type="power_in"/>
+        <pin num="7" name="COM5" type="power_in"/>
+        <pin num="8" name="COM6" type="power_in"/>
+        <pin num="9" name="COM7" type="power_in"/>
+        <pin num="10" name="ROW15/K13/INT" type="power_in"/>
+        <pin num="11" name="ROW14/K12" type="power_in"/>
+        <pin num="12" name="ROW13/K11" type="power_in"/>
+        <pin num="13" name="ROW12/K10" type="power_in"/>
+        <pin num="14" name="ROW11/K9" type="power_in"/>
+        <pin num="15" name="ROW10/K8" type="power_in"/>
+        <pin num="16" name="ROW9/K7" type="power_in"/>
+        <pin num="17" name="ROW8/K6" type="power_in"/>
+        <pin num="18" name="ROW7/K5" type="power_in"/>
+        <pin num="19" name="ROW6/K4" type="power_in"/>
+        <pin num="20" name="ROW5/K3" type="power_in"/>
+        <pin num="21" name="ROW4/K2" type="power_in"/>
+        <pin num="22" name="ROW3/K1" type="power_in"/>
+        <pin num="23" name="ROW2/A0" type="power_in"/>
+        <pin num="24" name="ROW1/A1" type="power_in"/>
+        <pin num="25" name="ROW0/A2" type="power_in"/>
+        <pin num="26" name="SCL" type="power_in"/>
+        <pin num="27" name="SDA" type="power_in"/>
+        <pin num="28" name="VDD" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="DC24Badge-rescue" part="LED-RESCUE-DC24Badge">
+      <footprints>
+        <fp>LED-3MM</fp>
+        <fp>LED-5MM</fp>
+        <fp>LED-10MM</fp>
+        <fp>LED-0603</fp>
+        <fp>LED-0805</fp>
+        <fp>LED-1206</fp>
+        <fp>LEDV</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">LED-RESCUE-DC24Badge</field>
+      </fields>
+      <pins>
+        <pin num="1" name="A" type="passive"/>
+        <pin num="2" name="K" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="DC24Badge" part="LXDC2SCAAB-352">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">LXDC2SCAAB-352</field>
+      </fields>
+      <pins>
+        <pin num="1" name="MODE" type="power_in"/>
+        <pin num="2" name="GND" type="power_in"/>
+        <pin num="3" name="Vout" type="power_in"/>
+        <pin num="4" name="Vout" type="power_in"/>
+        <pin num="5" name="GND" type="power_in"/>
+        <pin num="6" name="GND" type="power_in"/>
+        <pin num="7" name="EN" type="power_in"/>
+        <pin num="8" name="Vin" type="power_in"/>
+        <pin num="9" name="GND" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="DC24Badge" part="LXDC44AAAC-169">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">LXDC44AAAC-169</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Vin" type="power_in"/>
+        <pin num="2" name="GND" type="power_in"/>
+        <pin num="3" name="GND" type="power_in"/>
+        <pin num="4" name="Vout" type="power_in"/>
+        <pin num="5" name="Vout" type="power_in"/>
+        <pin num="6" name="Vout" type="power_in"/>
+        <pin num="8" name="GND" type="power_in"/>
+        <pin num="9" name="PG" type="power_in"/>
+        <pin num="10" name="EN" type="power_in"/>
+        <pin num="11" name="Vin" type="power_in"/>
+        <pin num="12" name="Vin" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="DC24Badge-rescue" part="R-RESCUE-DC24Badge">
+      <footprints>
+        <fp>R?</fp>
+        <fp>SM0603</fp>
+        <fp>SM0805</fp>
+        <fp>R?-*</fp>
+        <fp>SM1206</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">R-RESCUE-DC24Badge</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="DC24Badge" part="RM24C64C">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">RM24C64C</field>
+      </fields>
+      <pins>
+        <pin num="1" name="E0" type="power_in"/>
+        <pin num="2" name="E1" type="power_in"/>
+        <pin num="3" name="E2" type="power_in"/>
+        <pin num="4" name="GND" type="power_in"/>
+        <pin num="5" name="SDA" type="power_in"/>
+        <pin num="6" name="SCL" type="power_in"/>
+        <pin num="7" name="WP" type="power_in"/>
+        <pin num="8" name="VCC" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="device" part="SPST">
+      <description>Interrupteur simple</description>
+      <fields>
+        <field name="Reference">SW</field>
+        <field name="Value">SPST</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="input"/>
+        <pin num="2" name="2" type="input"/>
+      </pins>
+    </libpart>
+    <libpart lib="device" part="SW_PUSH">
+      <description>Button</description>
+      <fields>
+        <field name="Reference">SW</field>
+        <field name="Value">SW_PUSH</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="DC24Badge" part="TXS0108E">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">TXS0108E</field>
+      </fields>
+      <pins>
+        <pin num="1" name="A1" type="power_in"/>
+        <pin num="2" name="VCCA" type="power_in"/>
+        <pin num="3" name="A2" type="power_in"/>
+        <pin num="4" name="A3" type="power_in"/>
+        <pin num="5" name="A4" type="power_in"/>
+        <pin num="6" name="A5" type="power_in"/>
+        <pin num="7" name="A6" type="power_in"/>
+        <pin num="8" name="A7" type="power_in"/>
+        <pin num="9" name="A8" type="power_in"/>
+        <pin num="10" name="OE" type="power_in"/>
+        <pin num="11" name="GND" type="power_in"/>
+        <pin num="12" name="B8" type="power_in"/>
+        <pin num="13" name="B7" type="power_in"/>
+        <pin num="14" name="B6" type="power_in"/>
+        <pin num="15" name="B5" type="power_in"/>
+        <pin num="16" name="B4" type="power_in"/>
+        <pin num="17" name="B3" type="power_in"/>
+        <pin num="18" name="B2" type="power_in"/>
+        <pin num="19" name="VCCB" type="power_in"/>
+        <pin num="20" name="B1" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="DC24Badge-cache" part="USB-MINI-B">
+      <footprints>
+        <fp>USB-Mini-B-Jack</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">CON</field>
+        <field name="Value">USB-MINI-B</field>
+      </fields>
+      <pins>
+        <pin num="1" name="VBUS" type="power_in"/>
+        <pin num="2" name="D-" type="BiDi"/>
+        <pin num="3" name="D+" type="BiDi"/>
+        <pin num="4" name="ID" type="BiDi"/>
+        <pin num="5" name="GND" type="power_in"/>
+        <pin num="6" name="SHELL1" type="BiDi"/>
+        <pin num="7" name="SHELL2" type="BiDi"/>
+        <pin num="8" name="SHELL3" type="BiDi"/>
+        <pin num="9" name="SHELL4" type="BiDi"/>
+      </pins>
+    </libpart>
+  </libparts>
+  <libraries>
+    <library logical="DC24Badge-rescue">
+      <uri>/home/gondul/DC24Badge/Hardware/DC24Badge-rescue.lib</uri>
+    </library>
+    <library logical="device">
+      <uri>/usr/share/kicad/library/device.lib</uri>
+    </library>
+    <library logical="conn">
+      <uri>/usr/share/kicad/library/conn.lib</uri>
+    </library>
+    <library logical="regul">
+      <uri>/usr/share/kicad/library/regul.lib</uri>
+    </library>
+    <library logical="DC24Badge">
+      <uri>/home/gondul/DC24Badge/Hardware/DC24Badge.lib</uri>
+    </library>
+    <library logical="DC24Badge-cache">
+      <uri>/home/gondul/DC24Badge/Hardware/DC24Badge-cache.lib</uri>
+    </library>
+  </libraries>
+  <nets>
+    <net code="1" name="GPIO5">
+      <node ref="U1" pin="26"/>
+      <node ref="R5" pin="2"/>
+      <node ref="U3" pin="6"/>
+      <node ref="U10" pin="20"/>
+      <node ref="P1" pin="5"/>
+    </net>
+    <net code="2" name="GPIO4">
+      <node ref="U1" pin="27"/>
+      <node ref="P1" pin="4"/>
+      <node ref="U10" pin="19"/>
+      <node ref="R6" pin="2"/>
+      <node ref="U3" pin="5"/>
+    </net>
+    <net code="3" name="/ESP12E/ESP_TX">
+      <node ref="U7" pin="39"/>
+      <node ref="P1" pin="7"/>
+      <node ref="P5" pin="4"/>
+      <node ref="U10" pin="22"/>
+    </net>
+    <net code="4" name="/ESP12E/ESP_RX">
+      <node ref="U7" pin="38"/>
+      <node ref="U10" pin="21"/>
+      <node ref="P1" pin="6"/>
+      <node ref="P5" pin="2"/>
+    </net>
+    <net code="5" name="Net-(LED4-Pad16)">
+      <node ref="U1" pin="8"/>
+      <node ref="LED4" pin="16"/>
+    </net>
+    <net code="6" name="Net-(LED4-Pad11)">
+      <node ref="U1" pin="9"/>
+      <node ref="LED4" pin="11"/>
+    </net>
+    <net code="7" name="Net-(LED3-Pad11)">
+      <node ref="LED3" pin="11"/>
+      <node ref="U1" pin="7"/>
+    </net>
+    <net code="8" name="+5V">
+      <node ref="U5" pin="6"/>
+      <node ref="C1" pin="2"/>
+      <node ref="U5" pin="4"/>
+      <node ref="C9" pin="1"/>
+      <node ref="U5" pin="5"/>
+      <node ref="U1" pin="28"/>
+    </net>
+    <net code="9" name="GND">
+      <node ref="C18" pin="1"/>
+      <node ref="R12" pin="2"/>
+      <node ref="C8" pin="2"/>
+      <node ref="C10" pin="1"/>
+      <node ref="P3" pin="2"/>
+      <node ref="C9" pin="2"/>
+      <node ref="C6" pin="2"/>
+      <node ref="C12" pin="1"/>
+      <node ref="U3" pin="1"/>
+      <node ref="SW3" pin="1"/>
+      <node ref="C4" pin="2"/>
+      <node ref="U3" pin="4"/>
+      <node ref="U3" pin="3"/>
+      <node ref="U3" pin="2"/>
+      <node ref="U3" pin="7"/>
+      <node ref="C3" pin="1"/>
+      <node ref="SW2" pin="1"/>
+      <node ref="SW1" pin="1"/>
+      <node ref="C21" pin="1"/>
+      <node ref="U10" pin="15"/>
+      <node ref="SW4" pin="1"/>
+      <node ref="SW5" pin="1"/>
+      <node ref="P2" pin="10"/>
+      <node ref="C20" pin="1"/>
+      <node ref="U2" pin="1"/>
+      <node ref="C22" pin="1"/>
+      <node ref="C2" pin="1"/>
+      <node ref="CON1" pin="9"/>
+      <node ref="CON1" pin="8"/>
+      <node ref="CON1" pin="6"/>
+      <node ref="CON1" pin="5"/>
+      <node ref="CON1" pin="7"/>
+      <node ref="U7" pin="51"/>
+      <node ref="U7" pin="15"/>
+      <node ref="U7" pin="47"/>
+      <node ref="U7" pin="11"/>
+      <node ref="U7" pin="10"/>
+      <node ref="U7" pin="5"/>
+      <node ref="U7" pin="1"/>
+      <node ref="U7" pin="13"/>
+      <node ref="C13" pin="1"/>
+      <node ref="C11" pin="1"/>
+      <node ref="P6" pin="14"/>
+      <node ref="U9" pin="5"/>
+      <node ref="C19" pin="2"/>
+      <node ref="P6" pin="18"/>
+      <node ref="P6" pin="16"/>
+      <node ref="U7" pin="25"/>
+      <node ref="P6" pin="12"/>
+      <node ref="P6" pin="20"/>
+      <node ref="P6" pin="10"/>
+      <node ref="P6" pin="8"/>
+      <node ref="P6" pin="6"/>
+      <node ref="P6" pin="4"/>
+      <node ref="U8" pin="11"/>
+      <node ref="U5" pin="2"/>
+      <node ref="U5" pin="8"/>
+      <node ref="U5" pin="3"/>
+      <node ref="C5" pin="1"/>
+      <node ref="C7" pin="2"/>
+      <node ref="C15" pin="1"/>
+      <node ref="U4" pin="9"/>
+      <node ref="C17" pin="2"/>
+      <node ref="U4" pin="6"/>
+      <node ref="U4" pin="5"/>
+      <node ref="U4" pin="2"/>
+      <node ref="C16" pin="2"/>
+      <node ref="C14" pin="1"/>
+      <node ref="U7" pin="35"/>
+      <node ref="R13" pin="2"/>
+      <node ref="C1" pin="1"/>
+      <node ref="U1" pin="1"/>
+    </net>
+    <net code="10" name="Net-(LED1-Pad2)">
+      <node ref="LED1" pin="2"/>
+      <node ref="U1" pin="14"/>
+      <node ref="LED3" pin="2"/>
+      <node ref="LED4" pin="2"/>
+      <node ref="LED2" pin="2"/>
+    </net>
+    <net code="11" name="Net-(LED1-Pad16)">
+      <node ref="LED1" pin="16"/>
+      <node ref="U1" pin="2"/>
+    </net>
+    <net code="12" name="Net-(LED1-Pad4)">
+      <node ref="LED4" pin="4"/>
+      <node ref="LED1" pin="4"/>
+      <node ref="U1" pin="15"/>
+      <node ref="LED3" pin="4"/>
+      <node ref="LED2" pin="4"/>
+    </net>
+    <net code="13" name="Net-(LED1-Pad11)">
+      <node ref="LED1" pin="11"/>
+      <node ref="U1" pin="3"/>
+    </net>
+    <net code="14" name="Net-(LED2-Pad16)">
+      <node ref="U1" pin="4"/>
+      <node ref="LED2" pin="16"/>
+    </net>
+    <net code="15" name="Net-(LED2-Pad11)">
+      <node ref="LED2" pin="11"/>
+      <node ref="U1" pin="5"/>
+    </net>
+    <net code="16" name="Net-(LED3-Pad16)">
+      <node ref="LED3" pin="16"/>
+      <node ref="U1" pin="6"/>
+    </net>
+    <net code="17" name="Net-(LED1-Pad13)">
+      <node ref="LED3" pin="13"/>
+      <node ref="U1" pin="13"/>
+      <node ref="LED2" pin="13"/>
+      <node ref="LED1" pin="13"/>
+      <node ref="LED4" pin="13"/>
+    </net>
+    <net code="18" name="Net-(LED1-Pad1)">
+      <node ref="LED1" pin="1"/>
+      <node ref="LED3" pin="1"/>
+      <node ref="U1" pin="21"/>
+      <node ref="LED2" pin="1"/>
+      <node ref="LED4" pin="1"/>
+    </net>
+    <net code="19" name="Net-(U1-Pad10)">
+      <node ref="U1" pin="10"/>
+    </net>
+    <net code="20" name="Net-(LED1-Pad6)">
+      <node ref="LED4" pin="6"/>
+      <node ref="LED3" pin="6"/>
+      <node ref="LED1" pin="6"/>
+      <node ref="LED2" pin="6"/>
+      <node ref="U1" pin="17"/>
+    </net>
+    <net code="21" name="Net-(LED1-Pad7)">
+      <node ref="LED3" pin="7"/>
+      <node ref="U1" pin="22"/>
+      <node ref="LED1" pin="7"/>
+      <node ref="LED2" pin="7"/>
+      <node ref="LED4" pin="7"/>
+    </net>
+    <net code="22" name="Net-(LED1-Pad9)">
+      <node ref="LED2" pin="9"/>
+      <node ref="LED1" pin="9"/>
+      <node ref="LED4" pin="9"/>
+      <node ref="U1" pin="23"/>
+      <node ref="LED3" pin="9"/>
+    </net>
+    <net code="23" name="Net-(LED1-Pad10)">
+      <node ref="LED4" pin="10"/>
+      <node ref="U1" pin="24"/>
+      <node ref="LED3" pin="10"/>
+      <node ref="LED2" pin="10"/>
+      <node ref="LED1" pin="10"/>
+    </net>
+    <net code="24" name="Net-(LED1-Pad17)">
+      <node ref="LED3" pin="17"/>
+      <node ref="LED1" pin="17"/>
+      <node ref="LED4" pin="17"/>
+      <node ref="LED2" pin="17"/>
+      <node ref="U1" pin="12"/>
+    </net>
+    <net code="25" name="Net-(LED1-Pad8)">
+      <node ref="LED2" pin="8"/>
+      <node ref="LED1" pin="8"/>
+      <node ref="LED4" pin="8"/>
+      <node ref="LED3" pin="8"/>
+      <node ref="U1" pin="11"/>
+    </net>
+    <net code="26" name="Net-(LED1-Pad5)">
+      <node ref="U1" pin="16"/>
+      <node ref="LED2" pin="5"/>
+      <node ref="LED1" pin="5"/>
+      <node ref="LED3" pin="5"/>
+      <node ref="LED4" pin="5"/>
+    </net>
+    <net code="27" name="Net-(LED1-Pad14)">
+      <node ref="LED3" pin="14"/>
+      <node ref="LED1" pin="14"/>
+      <node ref="U1" pin="18"/>
+      <node ref="LED4" pin="14"/>
+      <node ref="LED2" pin="14"/>
+    </net>
+    <net code="28" name="Net-(LED1-Pad15)">
+      <node ref="LED2" pin="15"/>
+      <node ref="LED4" pin="15"/>
+      <node ref="LED1" pin="15"/>
+      <node ref="U1" pin="19"/>
+      <node ref="LED3" pin="15"/>
+    </net>
+    <net code="29" name="Net-(LED1-Pad18)">
+      <node ref="LED3" pin="18"/>
+      <node ref="LED1" pin="18"/>
+      <node ref="LED2" pin="18"/>
+      <node ref="LED4" pin="18"/>
+      <node ref="U1" pin="20"/>
+    </net>
+    <net code="30" name="Net-(LED1-Pad12)">
+      <node ref="LED2" pin="12"/>
+      <node ref="U1" pin="25"/>
+      <node ref="LED1" pin="12"/>
+      <node ref="LED3" pin="12"/>
+      <node ref="LED4" pin="12"/>
+    </net>
+    <net code="31" name="GPIO16">
+      <node ref="U10" pin="4"/>
+      <node ref="P2" pin="6"/>
+    </net>
+    <net code="32" name="GPIO13">
+      <node ref="R2" pin="1"/>
+      <node ref="P2" pin="3"/>
+      <node ref="U10" pin="7"/>
+    </net>
+    <net code="33" name="GPIO12">
+      <node ref="U10" pin="6"/>
+      <node ref="P2" pin="4"/>
+      <node ref="R1" pin="1"/>
+    </net>
+    <net code="34" name="ESP_EN">
+      <node ref="U10" pin="3"/>
+      <node ref="R10" pin="2"/>
+      <node ref="P2" pin="7"/>
+    </net>
+    <net code="35" name="ESP_ADC">
+      <node ref="U10" pin="2"/>
+      <node ref="P2" pin="8"/>
+    </net>
+    <net code="36" name="GPIO9">
+      <node ref="U10" pin="11"/>
+      <node ref="P2" pin="1"/>
+    </net>
+    <net code="37" name="GPIO10">
+      <node ref="P2" pin="2"/>
+      <node ref="U10" pin="12"/>
+    </net>
+    <net code="38" name="+3V3">
+      <node ref="R9" pin="1"/>
+      <node ref="C4" pin="1"/>
+      <node ref="C3" pin="2"/>
+      <node ref="R5" pin="1"/>
+      <node ref="R6" pin="1"/>
+      <node ref="C2" pin="2"/>
+      <node ref="U3" pin="8"/>
+      <node ref="C7" pin="1"/>
+      <node ref="C8" pin="1"/>
+      <node ref="R4" pin="1"/>
+      <node ref="P1" pin="8"/>
+      <node ref="R10" pin="1"/>
+      <node ref="U10" pin="8"/>
+      <node ref="R8" pin="1"/>
+      <node ref="U4" pin="4"/>
+      <node ref="U4" pin="3"/>
+    </net>
+    <net code="39" name="ESP_RESET">
+      <node ref="P2" pin="9"/>
+      <node ref="R9" pin="2"/>
+      <node ref="U10" pin="1"/>
+      <node ref="SW5" pin="2"/>
+    </net>
+    <net code="40" name="Net-(R7-Pad2)">
+      <node ref="R7" pin="2"/>
+      <node ref="SW4" pin="2"/>
+    </net>
+    <net code="41" name="GPIO0">
+      <node ref="U10" pin="18"/>
+      <node ref="R7" pin="1"/>
+      <node ref="R4" pin="2"/>
+      <node ref="P1" pin="3"/>
+    </net>
+    <net code="42" name="GPIO2">
+      <node ref="R8" pin="2"/>
+      <node ref="U10" pin="17"/>
+      <node ref="P1" pin="2"/>
+    </net>
+    <net code="43" name="GPIO15">
+      <node ref="U10" pin="16"/>
+      <node ref="R13" pin="1"/>
+      <node ref="P1" pin="1"/>
+    </net>
+    <net code="44" name="GPIO14">
+      <node ref="U10" pin="5"/>
+      <node ref="P2" pin="5"/>
+      <node ref="R3" pin="1"/>
+    </net>
+    <net code="45" name="Net-(R3-Pad2)">
+      <node ref="SW3" pin="2"/>
+      <node ref="R3" pin="2"/>
+    </net>
+    <net code="46" name="Net-(U10-Pad13)">
+      <node ref="U10" pin="13"/>
+    </net>
+    <net code="47" name="Net-(U10-Pad14)">
+      <node ref="U10" pin="14"/>
+    </net>
+    <net code="48" name="Net-(U10-Pad10)">
+      <node ref="U10" pin="10"/>
+    </net>
+    <net code="49" name="Net-(U10-Pad9)">
+      <node ref="U10" pin="9"/>
+    </net>
+    <net code="50" name="Net-(R2-Pad2)">
+      <node ref="SW2" pin="2"/>
+      <node ref="R2" pin="2"/>
+    </net>
+    <net code="51" name="Net-(R1-Pad2)">
+      <node ref="SW1" pin="2"/>
+      <node ref="R1" pin="2"/>
+    </net>
+    <net code="52" name="Net-(R11-Pad2)">
+      <node ref="R11" pin="2"/>
+      <node ref="U5" pin="9"/>
+    </net>
+    <net code="53" name="+BATT">
+      <node ref="U5" pin="11"/>
+      <node ref="U5" pin="12"/>
+      <node ref="U4" pin="8"/>
+      <node ref="SW6" pin="1"/>
+      <node ref="C5" pin="2"/>
+      <node ref="U5" pin="1"/>
+      <node ref="P3" pin="1"/>
+      <node ref="C6" pin="1"/>
+    </net>
+    <net code="54" name="Net-(R11-Pad1)">
+      <node ref="R11" pin="1"/>
+      <node ref="U4" pin="7"/>
+      <node ref="U4" pin="1"/>
+      <node ref="SW6" pin="2"/>
+      <node ref="U5" pin="10"/>
+    </net>
+    <net code="55" name="Net-(R12-Pad1)">
+      <node ref="R12" pin="1"/>
+      <node ref="U7" pin="6"/>
+    </net>
+    <net code="56" name="Net-(P5-Pad10)">
+      <node ref="P5" pin="10"/>
+      <node ref="U7" pin="43"/>
+    </net>
+    <net code="57" name="Net-(C13-Pad2)">
+      <node ref="X1" pin="1"/>
+      <node ref="C13" pin="2"/>
+      <node ref="U7" pin="3"/>
+    </net>
+    <net code="58" name="Net-(R15-Pad1)">
+      <node ref="U7" pin="14"/>
+      <node ref="R15" pin="1"/>
+    </net>
+    <net code="59" name="Net-(D2-Pad1)">
+      <node ref="D2" pin="1"/>
+      <node ref="R17" pin="2"/>
+    </net>
+    <net code="60" name="+1.8V">
+      <node ref="C18" pin="2"/>
+      <node ref="U7" pin="12"/>
+      <node ref="U7" pin="49"/>
+      <node ref="U7" pin="37"/>
+      <node ref="U7" pin="64"/>
+    </net>
+    <net code="61" name="/FT2232H/RXD_LED">
+      <node ref="D1" pin="2"/>
+      <node ref="P5" pin="9"/>
+      <node ref="U7" pin="54"/>
+    </net>
+    <net code="62" name="/FT2232H/TXD_LED">
+      <node ref="P5" pin="7"/>
+      <node ref="D2" pin="2"/>
+      <node ref="U7" pin="55"/>
+    </net>
+    <net code="63" name="Net-(D1-Pad1)">
+      <node ref="R16" pin="2"/>
+      <node ref="D1" pin="1"/>
+    </net>
+    <net code="64" name="Net-(P4-Pad2)">
+      <node ref="U7" pin="24"/>
+      <node ref="P4" pin="2"/>
+    </net>
+    <net code="65" name="Net-(P5-Pad6)">
+      <node ref="P5" pin="6"/>
+      <node ref="U7" pin="40"/>
+    </net>
+    <net code="66" name="Net-(P5-Pad8)">
+      <node ref="P5" pin="8"/>
+      <node ref="U7" pin="41"/>
+    </net>
+    <net code="67" name="/FT2232H/VUSB">
+      <node ref="C10" pin="2"/>
+      <node ref="U2" pin="3"/>
+      <node ref="CON1" pin="1"/>
+    </net>
+    <net code="68" name="/FT2232H/TRST">
+      <node ref="U7" pin="26"/>
+      <node ref="U8" pin="1"/>
+      <node ref="P4" pin="4"/>
+    </net>
+    <net code="69" name="/FT2232H/TDI">
+      <node ref="U8" pin="3"/>
+      <node ref="P4" pin="14"/>
+      <node ref="U7" pin="17"/>
+    </net>
+    <net code="70" name="Net-(C11-Pad2)">
+      <node ref="U7" pin="2"/>
+      <node ref="X1" pin="2"/>
+      <node ref="C11" pin="2"/>
+    </net>
+    <net code="71" name="Net-(P6-Pad7)">
+      <node ref="P6" pin="7"/>
+      <node ref="U8" pin="17"/>
+    </net>
+    <net code="72" name="/FT2232H/TMS">
+      <node ref="U7" pin="19"/>
+      <node ref="U8" pin="4"/>
+      <node ref="P4" pin="10"/>
+    </net>
+    <net code="73" name="/FT2232H/TCK">
+      <node ref="U7" pin="16"/>
+      <node ref="P4" pin="16"/>
+      <node ref="U8" pin="5"/>
+    </net>
+    <net code="74" name="/FT2232H/TDO">
+      <node ref="U8" pin="7"/>
+      <node ref="P4" pin="12"/>
+      <node ref="U7" pin="18"/>
+    </net>
+    <net code="75" name="Net-(P6-Pad1)">
+      <node ref="P6" pin="2"/>
+      <node ref="U8" pin="19"/>
+      <node ref="P6" pin="1"/>
+    </net>
+    <net code="76" name="Net-(P6-Pad3)">
+      <node ref="P6" pin="3"/>
+      <node ref="U8" pin="20"/>
+    </net>
+    <net code="77" name="Net-(P6-Pad5)">
+      <node ref="U8" pin="18"/>
+      <node ref="P6" pin="5"/>
+    </net>
+    <net code="78" name="Net-(P6-Pad9)">
+      <node ref="P6" pin="9"/>
+      <node ref="U8" pin="16"/>
+    </net>
+    <net code="79" name="Net-(P6-Pad11)">
+      <node ref="P6" pin="11"/>
+      <node ref="U8" pin="15"/>
+    </net>
+    <net code="80" name="Net-(P6-Pad13)">
+      <node ref="U8" pin="14"/>
+      <node ref="P6" pin="13"/>
+    </net>
+    <net code="81" name="Net-(P6-Pad15)">
+      <node ref="P6" pin="15"/>
+      <node ref="U8" pin="13"/>
+    </net>
+    <net code="82" name="Net-(P4-Pad7)">
+      <node ref="P4" pin="7"/>
+      <node ref="U7" pin="30"/>
+    </net>
+    <net code="83" name="Net-(P4-Pad5)">
+      <node ref="U7" pin="32"/>
+      <node ref="P4" pin="5"/>
+    </net>
+    <net code="84" name="Net-(P4-Pad3)">
+      <node ref="P4" pin="3"/>
+      <node ref="U7" pin="33"/>
+    </net>
+    <net code="85" name="Net-(P4-Pad1)">
+      <node ref="P4" pin="1"/>
+      <node ref="U7" pin="34"/>
+    </net>
+    <net code="86" name="/FT2232H/RESET">
+      <node ref="P4" pin="8"/>
+      <node ref="U7" pin="27"/>
+      <node ref="U8" pin="8"/>
+    </net>
+    <net code="87" name="/FT2232H/ADBUS5">
+      <node ref="U7" pin="22"/>
+      <node ref="P4" pin="13"/>
+    </net>
+    <net code="88" name="/FT2232H/ADBUS6">
+      <node ref="U7" pin="23"/>
+      <node ref="P4" pin="11"/>
+    </net>
+    <net code="89" name="Net-(P4-Pad9)">
+      <node ref="P4" pin="9"/>
+      <node ref="U7" pin="29"/>
+    </net>
+    <net code="90" name="/FT2232H/3V3">
+      <node ref="C12" pin="2"/>
+      <node ref="R16" pin="1"/>
+      <node ref="U7" pin="56"/>
+      <node ref="C17" pin="1"/>
+      <node ref="R15" pin="2"/>
+      <node ref="C15" pin="2"/>
+      <node ref="C14" pin="2"/>
+      <node ref="C16" pin="1"/>
+      <node ref="R18" pin="1"/>
+      <node ref="R17" pin="1"/>
+      <node ref="R20" pin="1"/>
+      <node ref="U7" pin="42"/>
+      <node ref="U7" pin="31"/>
+      <node ref="U8" pin="2"/>
+      <node ref="R21" pin="1"/>
+      <node ref="U8" pin="10"/>
+      <node ref="U9" pin="6"/>
+      <node ref="U9" pin="8"/>
+      <node ref="C19" pin="1"/>
+      <node ref="U2" pin="2"/>
+      <node ref="C21" pin="2"/>
+      <node ref="C22" pin="2"/>
+      <node ref="U7" pin="50"/>
+      <node ref="U7" pin="20"/>
+      <node ref="C20" pin="2"/>
+      <node ref="U7" pin="4"/>
+      <node ref="U7" pin="9"/>
+    </net>
+    <net code="91" name="/FT2232H/RTCK">
+      <node ref="U8" pin="6"/>
+      <node ref="P4" pin="6"/>
+      <node ref="U7" pin="28"/>
+    </net>
+    <net code="92" name="Net-(P5-Pad5)">
+      <node ref="U7" pin="57"/>
+      <node ref="P5" pin="5"/>
+    </net>
+    <net code="93" name="Net-(P5-Pad3)">
+      <node ref="U7" pin="58"/>
+      <node ref="P5" pin="3"/>
+    </net>
+    <net code="94" name="Net-(P5-Pad1)">
+      <node ref="P5" pin="1"/>
+    </net>
+    <net code="95" name="Net-(P5-Pad11)">
+      <node ref="U7" pin="53"/>
+      <node ref="P5" pin="11"/>
+    </net>
+    <net code="96" name="Net-(P5-Pad14)">
+      <node ref="P5" pin="14"/>
+      <node ref="U7" pin="45"/>
+    </net>
+    <net code="97" name="Net-(P5-Pad16)">
+      <node ref="P5" pin="16"/>
+      <node ref="U7" pin="46"/>
+    </net>
+    <net code="98" name="Net-(P5-Pad15)">
+      <node ref="U7" pin="48"/>
+      <node ref="P5" pin="15"/>
+    </net>
+    <net code="99" name="Net-(P5-Pad13)">
+      <node ref="U7" pin="52"/>
+      <node ref="P5" pin="13"/>
+    </net>
+    <net code="100" name="Net-(P5-Pad12)">
+      <node ref="U7" pin="44"/>
+      <node ref="P5" pin="12"/>
+    </net>
+    <net code="101" name="Net-(U8-Pad9)">
+      <node ref="U8" pin="9"/>
+    </net>
+    <net code="102" name="Net-(P6-Pad19)">
+      <node ref="P6" pin="19"/>
+    </net>
+    <net code="103" name="Net-(U8-Pad12)">
+      <node ref="U8" pin="12"/>
+    </net>
+    <net code="104" name="Net-(P6-Pad17)">
+      <node ref="P6" pin="17"/>
+    </net>
+    <net code="105" name="Net-(R18-Pad2)">
+      <node ref="U7" pin="63"/>
+      <node ref="U9" pin="1"/>
+      <node ref="R18" pin="2"/>
+    </net>
+    <net code="106" name="Net-(R20-Pad2)">
+      <node ref="R20" pin="2"/>
+      <node ref="U7" pin="62"/>
+      <node ref="U9" pin="2"/>
+    </net>
+    <net code="107" name="Net-(R19-Pad1)">
+      <node ref="U9" pin="3"/>
+      <node ref="U7" pin="61"/>
+      <node ref="R19" pin="1"/>
+    </net>
+    <net code="108" name="Net-(R19-Pad2)">
+      <node ref="U9" pin="4"/>
+      <node ref="R19" pin="2"/>
+      <node ref="R21" pin="2"/>
+    </net>
+    <net code="109" name="Net-(CON1-Pad4)">
+      <node ref="CON1" pin="4"/>
+    </net>
+    <net code="110" name="/FT2232H/ADBUS4">
+      <node ref="P4" pin="15"/>
+      <node ref="U7" pin="21"/>
+    </net>
+    <net code="111" name="/FT2232H/D-">
+      <node ref="CON1" pin="2"/>
+      <node ref="U7" pin="7"/>
+    </net>
+    <net code="112" name="/FT2232H/D+">
+      <node ref="U7" pin="8"/>
+      <node ref="CON1" pin="3"/>
+    </net>
+    <net code="113" name="Net-(U7-Pad60)">
+      <node ref="U7" pin="60"/>
+    </net>
+    <net code="114" name="Net-(U7-Pad59)">
+      <node ref="U7" pin="59"/>
+    </net>
+    <net code="115" name="Net-(U7-Pad36)">
+      <node ref="U7" pin="36"/>
+    </net>
+  </nets>
+</export>
