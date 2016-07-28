@@ -275,7 +275,7 @@ user_init()
     eeprom_read_settings();
     os_printf("EEPROM settings loaded\r\n");
 
-    display_write(" ErrLib ");
+    display_write(" ERRANT ");
     os_printf("Startup message sent to display\r\n");
 
     system_os_task(loop, user_procTaskPrio, user_procTaskQueue, user_procTaskQueueLen);
