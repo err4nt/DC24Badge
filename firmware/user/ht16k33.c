@@ -74,6 +74,7 @@ display_init()
 void ICACHE_FLASH_ATTR
 display_clear(void)
 {
+    memset(display_buffer, ' ', DISPLAY_SIZE);
 }
 
 void ICACHE_FLASH_ATTR
@@ -87,15 +88,12 @@ send_display_buffer(void)
         display_output_buffer[convert] = font[(uint8_t)display_buffer[convert]];
     }
 
-    debug_print("Begin send_display_buffer\r\n");
-
     buffer = HT16K33_DISPLAY_MEM_BEGIN; 
     i2c_send(HT16K33_ADDR, &buffer, 1);
 
     int c = 0;
     while(c < 8)
     {
-        debug_print("SEND: %d\r\n", c);
         uint8_t high_byte = (uint8_t)(display_output_buffer[c]>>8);
         uint8_t low_byte = (uint8_t)display_output_buffer[c];
         i2c_master_writeByte(low_byte);
@@ -111,6 +109,4 @@ send_display_buffer(void)
         c++;
     }
     i2c_master_stop();
-
-    os_printf("End send_display_buffer\r\n");
 }

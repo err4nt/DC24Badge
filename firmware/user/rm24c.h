@@ -7,6 +7,7 @@
 
 uint8_t eeprom_read(uint16_t addr);
 void eeprom_write(uint16_t addr, uint8_t data);
-void eeprom_read_settings(void);
+void eeprom_read_block(uint8_t *target, uint16_t start, uint16_t len);
+void eeprom_write_block(uint8_t *src, uint16_t start, uint16_t len);
 
 #endif

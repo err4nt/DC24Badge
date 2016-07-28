@@ -13,9 +13,22 @@
 #include "user_main.h"
 
 system_flags_s system_flags;
+settings_s settings;
 
 uint8_t display_data[64];
-display_function_f current_display_function;
+display_function_f current_display_function = 0;
+
+//Button handlers
+button_handler_f button_up_handler = 0;
+button_handler_f button_down_handler = 0;
+button_handler_f button_back_handler = 0;
+button_handler_f button_fwd_handler = 0;
+button_handler_f button_long_up_handler = 0;
+button_handler_f button_long_down_handler = 0;
+button_handler_f button_long_back_handler = 0;
+button_handler_f button_long_fwd_handler = 0;
+
+uint8_t current_menu_item = MENU_NONE;
 
 #define user_procTaskPrio        0
 #define user_procTaskQueueLen    1
@@ -172,48 +185,64 @@ void ICACHE_FLASH_ATTR
 button_up_long_press(void)
 {
     debug_print("Up long press\r\n");
+    if(button_long_up_handler != 0)
+        button_long_up_handler();
 }
 
 void ICACHE_FLASH_ATTR
 button_up_short_press(void)
 {
     debug_print("Up short press\r\n");
+    if(button_up_handler != 0)
+        button_up_handler();
 }
 
 void ICACHE_FLASH_ATTR
 button_down_long_press(void)
 {
     debug_print("Down long press\r\n");
+    if(button_long_down_handler != 0)
+        button_long_down_handler();
 }
 
 void ICACHE_FLASH_ATTR
 button_down_short_press(void)
 {
     debug_print("Down short press\r\n");
+    if(button_down_handler != 0)
+        button_down_handler();
 }
 
 void ICACHE_FLASH_ATTR
 button_left_long_press(void)
 {
     debug_print("Left long press\r\n");
+    if(button_long_back_handler != 0)
+        button_long_back_handler();
 }
 
 void ICACHE_FLASH_ATTR
 button_left_short_press(void)
 {
     debug_print("Left short press\r\n");
+    if(button_back_handler != 0)
+        button_back_handler();
 }
 
 void ICACHE_FLASH_ATTR
 button_right_long_press(void)
 {
     debug_print("Right long press\r\n");
+    if(button_long_fwd_handler != 0)
+        button_long_fwd_handler();
 }
 
 void ICACHE_FLASH_ATTR
 button_right_short_press(void)
 {
     debug_print("Right short press\r\n");
+    if(button_fwd_handler != 0)
+        button_fwd_handler();
 }
 
 /* 
@@ -252,9 +281,12 @@ void loop(os_event_t *events)
         system_flags.display_dirty = 0;
     }
 
-    if(current_display_function((void *)display_data) == 1)
+    if(current_display_function != 0)
     {
-        //Pick new display function
+        if(current_display_function((void *)display_data) == 1)
+        {
+            //Pick new display function
+        }
     }
 
     os_delay_us(50000);
@@ -322,6 +354,103 @@ display_text_scroll(void *data)
 {
 }
 
+//Enter nich
+
+void ICACHE_FLASH_ATTR
+enter_nick_up_handler(void)
+{
+    char *buffer = ((enter_nick_data_s *)display_data)->current_nick;
+    char current = buffer[((enter_nick_data_s *)display_data)->cursor_pos];
+
+    current++;
+    if(current > 126)
+        current = 32;
+    buffer[((enter_nick_data_s *)display_data)->cursor_pos] = current;
+}
+
+void ICACHE_FLASH_ATTR
+enter_nick_down_handler(void)
+{
+    char *buffer = ((enter_nick_data_s *)display_data)->current_nick;
+    char current = buffer[((enter_nick_data_s *)display_data)->cursor_pos];
+
+    current--;
+    if(current < 32)
+        current = 126;
+    buffer[((enter_nick_data_s *)display_data)->cursor_pos] = current;
+}
+
+void ICACHE_FLASH_ATTR
+enter_nick_right_handler(void)
+{
+    char *buffer = ((enter_nick_data_s *)display_data)->current_nick;
+
+    if(((enter_nick_data_s *)display_data)->cursor_pos < MAX_NICK_SIZE)
+    {
+        ((enter_nick_data_s *)display_data)->cursor_pos++;
+        if(((enter_nick_data_s *)display_data)->cursor_pos > (((enter_nick_data_s *)display_data)->offset + DISPLAY_SIZE))
+        {
+            ((enter_nick_data_s *)display_data)->offset++;
+        }
+        memcpy(display_buffer, &buffer[((enter_nick_data_s *)display_data)->offset], DISPLAY_SIZE);
+        send_display_buffer();
+    }
+}
+
+void ICACHE_FLASH_ATTR
+enter_nick_left_handler(void)
+{
+    char *buffer = ((enter_nick_data_s *)display_data)->current_nick;
+
+    if(((enter_nick_data_s *)display_data)->cursor_pos > 0)
+    {
+        ((enter_nick_data_s *)display_data)->cursor_pos--;
+        if(((enter_nick_data_s *)display_data)->cursor_pos < ((enter_nick_data_s *)display_data)->offset)
+        {
+            ((enter_nick_data_s *)display_data)->offset--;
+        }
+        memcpy(display_buffer, &buffer[((enter_nick_data_s *)display_data)->offset], DISPLAY_SIZE);
+        send_display_buffer();
+    }
+}
+
+uint8_t ICACHE_FLASH_ATTR
+enter_nick_display(void *data)
+{
+    char *buffer = ((enter_nick_data_s *)display_data)->current_nick;
+
+    enter_nick_data_s *s_data = (enter_nick_data_s *)data;
+
+    s_data->steps++;
+
+    if((s_data->steps % 5) == 0)
+    {
+        if(display_buffer[s_data->cursor_pos] != '_')
+            display_buffer[s_data->cursor_pos] = '_';
+        else
+            display_buffer[s_data->cursor_pos] = s_data->under_cursor;
+    }
+    system_flags.display_dirty = 1;
+
+    return 0;
+}
+    
+void ICACHE_FLASH_ATTR
+enter_nick_setup(void)
+{
+    //Put up the enter nic prompt
+    ((enter_nick_data_s *)display_data)->steps = 0;
+    ((enter_nick_data_s *)display_data)->cursor_pos = 0;
+    ((enter_nick_data_s *)display_data)->under_cursor = 32;
+    ((enter_nick_data_s *)display_data)->offset = 0;
+    button_up_handler = &enter_nick_up_handler;
+    button_down_handler = &enter_nick_down_handler;
+    button_back_handler = &enter_nick_left_handler;
+    button_fwd_handler = &enter_nick_right_handler;
+    current_display_function = &enter_nick_display;
+}
+
+
 void ICACHE_FLASH_ATTR
 user_init()
 {
@@ -338,20 +467,33 @@ user_init()
     i2c_init();
     buttons_init();
     display_init();
+    display_clear();
     os_printf("Display setup done\r\n");
 
     eeprom_write_byte(0x0000, 0x33);
     os_printf("%x\r\n", eeprom_read_byte(0x0000));
 
-    eeprom_read_settings();
-    os_printf("EEPROM settings loaded\r\n");
-
-    memcpy(&((sneakers_data_s *)display_data)->target_text, " TEST   ", 8);
-    ((sneakers_data_s *)display_data)->steps = 0;
-    ((sneakers_data_s *)display_data)->random_or_not = 0xff;
-    current_display_function = &display_text_sneakers;
-
-    os_printf("Startup message sent to display\r\n");
+    eeprom_read_block(&settings, 0, sizeof(settings_s));
+    if(settings.header == 0xDE)
+    {
+        debug_print("EEPROM settings loaded\r\n");
+        if(strlen(settings.nick) < 9)
+        {
+            //Sorry people with long nics, not enough room on the display to do the cool transition
+            memcpy(&((sneakers_data_s *)display_data)->target_text, " ERRANT ", 8);
+            ((sneakers_data_s *)display_data)->steps = 0;
+            ((sneakers_data_s *)display_data)->random_or_not = 0xff;
+            current_display_function = &display_text_sneakers;
+        }
+        else
+        {
+       }
+    }
+    else
+    {
+        debug_print("EEPROM settings invalid\r\n");
+        enter_nick_setup();
+    }
 
     system_os_task(loop, user_procTaskPrio, user_procTaskQueue, user_procTaskQueueLen);
     system_os_post(user_procTaskPrio, 0, 0);

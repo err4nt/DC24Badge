@@ -37,8 +37,24 @@ eeprom_write_byte(uint16_t addr, uint8_t data)
 }
 
 void ICACHE_FLASH_ATTR
-eeprom_read_settings()
+eeprom_read_block(uint8_t *target, uint16_t start, uint16_t len)
 {
+    uint16_t read;
+
+    for(read = 0; read < len; read++)
+    {
+        target[read] = eeprom_read_byte(start+read);    
+    }
 }
 
+void ICACHE_FLASH_ATTR
+eeprom_write_block(uint8_t *src, uint16_t start, uint16_t len)
+{
+    uint16_t write;
+
+    for(write = 0; write < len; write++)
+    {
+        eeprom_write_byte(start+write, src[write]);
+    }
+}
 
