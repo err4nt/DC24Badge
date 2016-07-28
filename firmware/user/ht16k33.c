@@ -7,15 +7,14 @@
 #include "font.h"
 #include "user_main.h"
 #include "i2c_helper.h"
+#include "debug.h"
 
 /* Driver for the Holtek ht16k33 display driver
  */
 
 uint16_t display_output_buffer[DISPLAY_SIZE];
 
-uint16_t display_buffer[DISPLAY_BUFFER_SIZE];
-uint8_t display_buffer_len;
-uint8_t display_buffer_index;
+uint8_t display_buffer[DISPLAY_SIZE];
 
 /* Converts an ascii string to a font suitable for the display
  *
@@ -73,38 +72,22 @@ display_init()
 }
 
 void ICACHE_FLASH_ATTR
-display_write(char *text)
-{
-    int c;
-    for(c = 0; c < strlen(text); c++)
-    {
-        display_buffer[display_buffer_index+c] = font[(uint8_t)text[c]]; 
-    }
-    display_buffer_index += c;
-    system_flags.display_dirty = 1;
-}
-
-void ICACHE_FLASH_ATTR
 display_clear(void)
 {
-    display_buffer_index = 0;
-    display_buffer_len = 0;
-    memset(display_output_buffer, 0, DISPLAY_SIZE*2);
-    system_flags.display_dirty = 1;
-}
-
-void ICACHE_FLASH_ATTR
-display_update(void)
-{
-    memcpy(display_output_buffer, &display_buffer[0], DISPLAY_SIZE*2);
 }
 
 void ICACHE_FLASH_ATTR
 send_display_buffer(void)
 {
     uint8_t buffer;
+    uint8_t convert;
 
-    os_printf("Begin send_display_buffer\r\n");
+    for(convert = 0; convert < DISPLAY_SIZE; convert++)
+    {
+        display_output_buffer[convert] = font[(uint8_t)display_buffer[convert]];
+    }
+
+    debug_print("Begin send_display_buffer\r\n");
 
     buffer = HT16K33_DISPLAY_MEM_BEGIN; 
     i2c_send(HT16K33_ADDR, &buffer, 1);
@@ -112,18 +95,18 @@ send_display_buffer(void)
     int c = 0;
     while(c < 8)
     {
-        os_printf("SEND: %d\r\n", c);
+        debug_print("SEND: %d\r\n", c);
         uint8_t high_byte = (uint8_t)(display_output_buffer[c]>>8);
         uint8_t low_byte = (uint8_t)display_output_buffer[c];
         i2c_master_writeByte(low_byte);
         if(!i2c_master_checkAck()){
             i2c_master_stop();
-            os_printf("I2C Error 2\r\n");
+            debug_print("I2C Error 2\r\n");
         }
         i2c_master_writeByte(high_byte);
         if(!i2c_master_checkAck()){
             i2c_master_stop();
-            os_printf("I2C Error 2\r\n");
+            debug_print("I2C Error 2\r\n");
         }
         c++;
     }

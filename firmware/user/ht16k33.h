@@ -11,14 +11,13 @@
 #define HT16K33_DISPLAY_MEM_BEGIN 0x00
 
 #define DISPLAY_SIZE 8
-#define DISPLAY_BUFFER_SIZE DISPLAY_SIZE*3
+
+extern uint8_t display_buffer[DISPLAY_SIZE];
 
 void display_state(uint8_t state);
 void display_brightness(uint8_t brightness);
 void display_init(void); 
-void display_write(char *text);
 void display_clear(void);
-void display_update(void);
 void send_display_buffer(void);
 
 #endif

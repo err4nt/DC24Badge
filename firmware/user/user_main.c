@@ -14,6 +14,9 @@
 
 system_flags_s system_flags;
 
+uint8_t display_data[64];
+display_function_f current_display_function;
+
 #define user_procTaskPrio        0
 #define user_procTaskQueueLen    1
 os_event_t    user_procTaskQueue[user_procTaskQueueLen];
@@ -243,12 +246,80 @@ i2c_init()
 
 void loop(os_event_t *events)
 {
-    //Move the current display text into the output buffer and send it to the display
-    display_update();
-    send_display_buffer();
+    if(system_flags.display_dirty == 1)
+    {
+        send_display_buffer();
+        system_flags.display_dirty = 0;
+    }
 
-    os_delay_us(100000);
+    if(current_display_function((void *)display_data) == 1)
+    {
+        //Pick new display function
+    }
+
+    os_delay_us(50000);
     system_os_post(user_procTaskPrio, 0, 0 );
+}
+
+uint8_t ICACHE_FLASH_ATTR
+display_text_sneakers(void *data)
+{
+    sneakers_data_s *s_data = (sneakers_data_s *)data;
+    s_data->steps++;
+    uint8_t scan = 0;
+
+    if((s_data->steps % 10 == 9)){
+        uint8_t reveal;
+        //find a character to reveal
+        os_get_random(&reveal, 1);
+        reveal = reveal % 8;
+        while(((s_data->random_or_not >> reveal) & 1) == 0)
+        {
+            //already did that one, pick again
+            os_get_random(&reveal, 1);
+            reveal = reveal % 8;
+        }
+        //mark the character for reveal
+        s_data->random_or_not &= ~(1 << reveal);
+    }
+
+    while(scan < 8)
+    {
+        if(((s_data->random_or_not >> scan) & 1) == 1)
+        {
+            //put random char there
+            char c;
+            os_get_random(&c, 1);
+            display_buffer[scan] = c;
+        }
+        else
+        {
+            //put real char there
+            display_buffer[scan] = s_data->target_text[scan]; 
+        }
+        scan++;
+    }
+    system_flags.display_dirty = 1;
+
+    if(s_data->random_or_not == 0)
+    {
+       //Done
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+void ICACHE_FLASH_ATTR
+display_text_build(void *data)
+{
+}
+
+void ICACHE_FLASH_ATTR
+display_text_scroll(void *data)
+{
 }
 
 void ICACHE_FLASH_ATTR
@@ -275,7 +346,11 @@ user_init()
     eeprom_read_settings();
     os_printf("EEPROM settings loaded\r\n");
 
-    display_write(" ERRANT ");
+    memcpy(&((sneakers_data_s *)display_data)->target_text, " TEST   ", 8);
+    ((sneakers_data_s *)display_data)->steps = 0;
+    ((sneakers_data_s *)display_data)->random_or_not = 0xff;
+    current_display_function = &display_text_sneakers;
+
     os_printf("Startup message sent to display\r\n");
 
     system_os_task(loop, user_procTaskPrio, user_procTaskQueue, user_procTaskQueueLen);
