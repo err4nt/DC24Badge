@@ -17,14 +17,6 @@ typedef struct {
 } sneakers_data_s;
 
 typedef struct {
-    char current_nick[16];
-    uint8_t cursor_pos;
-    char under_cursor;
-    uint8_t offset;
-    uint8_t steps;
-} enter_nick_data_s;
-
-typedef struct {
     uint8_t header;
     char nick[16];
     uint8_t brightness;
@@ -33,6 +25,16 @@ typedef struct {
 typedef uint8_t (*display_function_f)(void *);
 typedef void (*button_handler_f)(void);
 
+extern uint8_t display_data[64];
 extern system_flags_s system_flags;
+extern display_function_f current_display_function;
+extern button_handler_f button_up_handler;
+extern button_handler_f button_down_handler;
+extern button_handler_f button_back_handler;
+extern button_handler_f button_fwd_handler;
+extern button_handler_f button_long_up_handler;
+extern button_handler_f button_long_down_handler;
+extern button_handler_f button_long_back_handler;
+extern button_handler_f button_long_fwd_handler;
 
 #endif

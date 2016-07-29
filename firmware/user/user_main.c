@@ -354,103 +354,6 @@ display_text_scroll(void *data)
 {
 }
 
-//Enter nich
-
-void ICACHE_FLASH_ATTR
-enter_nick_up_handler(void)
-{
-    char *buffer = ((enter_nick_data_s *)display_data)->current_nick;
-    char current = buffer[((enter_nick_data_s *)display_data)->cursor_pos];
-
-    current++;
-    if(current > 126)
-        current = 32;
-    buffer[((enter_nick_data_s *)display_data)->cursor_pos] = current;
-}
-
-void ICACHE_FLASH_ATTR
-enter_nick_down_handler(void)
-{
-    char *buffer = ((enter_nick_data_s *)display_data)->current_nick;
-    char current = buffer[((enter_nick_data_s *)display_data)->cursor_pos];
-
-    current--;
-    if(current < 32)
-        current = 126;
-    buffer[((enter_nick_data_s *)display_data)->cursor_pos] = current;
-}
-
-void ICACHE_FLASH_ATTR
-enter_nick_right_handler(void)
-{
-    char *buffer = ((enter_nick_data_s *)display_data)->current_nick;
-
-    if(((enter_nick_data_s *)display_data)->cursor_pos < MAX_NICK_SIZE)
-    {
-        ((enter_nick_data_s *)display_data)->cursor_pos++;
-        if(((enter_nick_data_s *)display_data)->cursor_pos > (((enter_nick_data_s *)display_data)->offset + DISPLAY_SIZE))
-        {
-            ((enter_nick_data_s *)display_data)->offset++;
-        }
-        memcpy(display_buffer, &buffer[((enter_nick_data_s *)display_data)->offset], DISPLAY_SIZE);
-        send_display_buffer();
-    }
-}
-
-void ICACHE_FLASH_ATTR
-enter_nick_left_handler(void)
-{
-    char *buffer = ((enter_nick_data_s *)display_data)->current_nick;
-
-    if(((enter_nick_data_s *)display_data)->cursor_pos > 0)
-    {
-        ((enter_nick_data_s *)display_data)->cursor_pos--;
-        if(((enter_nick_data_s *)display_data)->cursor_pos < ((enter_nick_data_s *)display_data)->offset)
-        {
-            ((enter_nick_data_s *)display_data)->offset--;
-        }
-        memcpy(display_buffer, &buffer[((enter_nick_data_s *)display_data)->offset], DISPLAY_SIZE);
-        send_display_buffer();
-    }
-}
-
-uint8_t ICACHE_FLASH_ATTR
-enter_nick_display(void *data)
-{
-    char *buffer = ((enter_nick_data_s *)display_data)->current_nick;
-
-    enter_nick_data_s *s_data = (enter_nick_data_s *)data;
-
-    s_data->steps++;
-
-    if((s_data->steps % 5) == 0)
-    {
-        if(display_buffer[s_data->cursor_pos] != '_')
-            display_buffer[s_data->cursor_pos] = '_';
-        else
-            display_buffer[s_data->cursor_pos] = s_data->under_cursor;
-    }
-    system_flags.display_dirty = 1;
-
-    return 0;
-}
-    
-void ICACHE_FLASH_ATTR
-enter_nick_setup(void)
-{
-    //Put up the enter nic prompt
-    ((enter_nick_data_s *)display_data)->steps = 0;
-    ((enter_nick_data_s *)display_data)->cursor_pos = 0;
-    ((enter_nick_data_s *)display_data)->under_cursor = 32;
-    ((enter_nick_data_s *)display_data)->offset = 0;
-    button_up_handler = &enter_nick_up_handler;
-    button_down_handler = &enter_nick_down_handler;
-    button_back_handler = &enter_nick_left_handler;
-    button_fwd_handler = &enter_nick_right_handler;
-    current_display_function = &enter_nick_display;
-}
-
-
 void ICACHE_FLASH_ATTR
 user_init()
 {
@@ -492,7 +395,7 @@ user_init()
     else
     {
         debug_print("EEPROM settings invalid\r\n");
-        enter_nick_setup();
+        entry_setup();
     }
 
     system_os_task(loop, user_procTaskPrio, user_procTaskQueue, user_procTaskQueueLen);
