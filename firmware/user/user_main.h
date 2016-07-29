@@ -1,13 +1,14 @@
 #ifndef __USER_MAIN_H__
 #define __USER_MAIN_H__
 
+#define DISPLAY_DATA_SIZE 96
+
 #define MENU_NONE 0
 #define MENU_ENTER_NICK 1
 
-#define MAX_NICK_SIZE 16
-
 typedef struct {
     uint8_t display_dirty:1;
+    uint8_t mode:7;
 } system_flags_s;
 
 typedef struct {
@@ -18,14 +19,14 @@ typedef struct {
 
 typedef struct {
     uint8_t header;
-    char nick[16];
+    char nick[17];
     uint8_t brightness;
 } settings_s;
 
 typedef uint8_t (*display_function_f)(void *);
 typedef void (*button_handler_f)(void);
 
-extern uint8_t display_data[64];
+extern uint8_t display_data[DISPLAY_DATA_SIZE];
 extern system_flags_s system_flags;
 extern display_function_f current_display_function;
 extern button_handler_f button_up_handler;

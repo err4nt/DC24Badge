@@ -18,6 +18,9 @@ void display_state(uint8_t state);
 void display_brightness(uint8_t brightness);
 void display_init(void); 
 void display_clear(void);
+uint16_t display_get_raw(uint8_t offset);
+void display_set_raw(uint8_t offset, uint16_t value);
+void update_display_output_buffer();
 void send_display_buffer(void);
 
 #endif

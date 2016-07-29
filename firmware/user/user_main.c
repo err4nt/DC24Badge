@@ -9,13 +9,14 @@
 #include "driver/uart.h"
 #include "driver/i2c_master.h"
 #include "ht16k33.h"
+#include "entry.h"
 #include "debug.h"
 #include "user_main.h"
 
 system_flags_s system_flags;
 settings_s settings;
 
-uint8_t display_data[64];
+uint8_t display_data[DISPLAY_DATA_SIZE];
 display_function_f current_display_function = 0;
 
 //Button handlers
@@ -30,7 +31,7 @@ button_handler_f button_long_fwd_handler = 0;
 
 uint8_t current_menu_item = MENU_NONE;
 
-#define user_procTaskPrio        0
+#define user_procTaskPrio        1 
 #define user_procTaskQueueLen    1
 os_event_t    user_procTaskQueue[user_procTaskQueueLen];
 static volatile os_timer_t deauth_timer;
@@ -253,6 +254,7 @@ void ICACHE_FLASH_ATTR
 buttons_init()
 {
     debug_print("Enter buttons_init\r\n");
+
     single_key[0] = key_init_single(BUTTON_UP_IO_NUM, BUTTON_UP_IO_MUX, BUTTON_UP_IO_FUNC, button_up_long_press, button_up_short_press);
     single_key[1] = key_init_single(BUTTON_DOWN_IO_NUM, BUTTON_DOWN_IO_MUX, BUTTON_DOWN_IO_FUNC, button_down_long_press, button_down_short_press);
     single_key[2] = key_init_single(BUTTON_LEFT_IO_NUM, BUTTON_LEFT_IO_MUX, BUTTON_LEFT_IO_FUNC, button_left_long_press, button_left_short_press);
@@ -277,6 +279,7 @@ void loop(os_event_t *events)
 {
     if(system_flags.display_dirty == 1)
     {
+        update_display_output_buffer();
         send_display_buffer();
         system_flags.display_dirty = 0;
     }
@@ -355,6 +358,42 @@ display_text_scroll(void *data)
 }
 
 void ICACHE_FLASH_ATTR
+nick_entry_done_handler(void)
+{
+    //Activated on long press of right button
+    entry_data_s *s_data = (entry_data_s *)display_data;
+
+    uint8_t index = 0;
+    char c = s_data->current_text[index];
+    while(c != ' ' && c != 0) 
+    {
+        index++;
+        c = s_data->current_text[index];
+    }
+    if(c == ' ')
+        s_data->current_text[index] = 0;
+
+    settings.header = 0xDE;
+
+    strncpy(settings.nick, s_data->current_text, 17);
+
+    eeprom_write_block(&settings, 0, sizeof(settings_s));
+
+    memcpy(display_buffer, "SAVED   ", 8);
+    system_flags.display_dirty = 1;
+    entry_teardown();
+    button_long_fwd_handler = 0;
+}
+
+void ICACHE_FLASH_ATTR
+enter_nick_instruction_end_handler(void)
+{
+    instructions_teardown();
+    entry_setup();
+    button_long_fwd_handler = &nick_entry_done_handler;
+}
+
+void ICACHE_FLASH_ATTR
 user_init()
 {
     uart_init(115200, 115200);
@@ -374,7 +413,7 @@ user_init()
     os_printf("Display setup done\r\n");
 
     eeprom_write_byte(0x0000, 0x33);
-    os_printf("%x\r\n", eeprom_read_byte(0x0000));
+    //os_printf("%x\r\n", eeprom_read_byte(0x0000));
 
     eeprom_read_block(&settings, 0, sizeof(settings_s));
     if(settings.header == 0xDE)
@@ -383,7 +422,7 @@ user_init()
         if(strlen(settings.nick) < 9)
         {
             //Sorry people with long nics, not enough room on the display to do the cool transition
-            memcpy(&((sneakers_data_s *)display_data)->target_text, " ERRANT ", 8);
+            strncpy(((sneakers_data_s *)display_data)->target_text, settings.nick, 8);
             ((sneakers_data_s *)display_data)->steps = 0;
             ((sneakers_data_s *)display_data)->random_or_not = 0xff;
             current_display_function = &display_text_sneakers;
@@ -395,7 +434,13 @@ user_init()
     else
     {
         debug_print("EEPROM settings invalid\r\n");
-        entry_setup();
+        instructions_setup(30);
+        instruction_set(0, "ENTER");
+        instruction_set(1, "NICK");
+        instruction_set(2, "HOLD");
+        instruction_set(3, "RIGHT");
+        instruction_set(4, "TO SAVE");
+        instructions_set_end_handler(&enter_nick_instruction_end_handler);
     }
 
     system_os_task(loop, user_procTaskPrio, user_procTaskQueue, user_procTaskQueueLen);
@@ -407,5 +452,5 @@ user_init()
     // os_timer_arm(&deauth_timer, CHANNEL_HOP_INTERVAL, 1);
     
     // Continue to 'sniffer_system_init_done'
-    // system_init_done_cb(sniffer_system_init_done);
+    //system_init_done_cb(sniffer_system_init_done);
 }

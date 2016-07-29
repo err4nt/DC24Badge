@@ -68,7 +68,7 @@ display_init()
     display_clear();
 
     display_state(1);
-    display_brightness(15);
+    display_brightness(10);
 }
 
 void ICACHE_FLASH_ATTR
@@ -77,16 +77,33 @@ display_clear(void)
     memset(display_buffer, ' ', DISPLAY_SIZE);
 }
 
-void ICACHE_FLASH_ATTR
-send_display_buffer(void)
+uint16_t ICACHE_FLASH_ATTR
+display_get_raw(uint8_t offset)
 {
-    uint8_t buffer;
+    return display_output_buffer[offset];
+}
+
+void ICACHE_FLASH_ATTR
+display_set_raw(uint8_t offset, uint16_t value)
+{
+    display_output_buffer[offset] = value;
+}
+
+void ICACHE_FLASH_ATTR
+update_display_output_buffer(void)
+{
     uint8_t convert;
 
     for(convert = 0; convert < DISPLAY_SIZE; convert++)
     {
         display_output_buffer[convert] = font[(uint8_t)display_buffer[convert]];
     }
+}
+
+void ICACHE_FLASH_ATTR
+send_display_buffer(void)
+{
+    uint8_t buffer;
 
     buffer = HT16K33_DISPLAY_MEM_BEGIN; 
     i2c_send(HT16K33_ADDR, &buffer, 1);

@@ -4,7 +4,7 @@
 #include "osapi.h"
 #include "entry.h"
     
-void 
+void ICACHE_FLASH_ATTR 
 entry_up_handler(void)
 {
     char *buffer = ((entry_data_s *)display_data)->current_text;
@@ -16,12 +16,13 @@ entry_up_handler(void)
     buffer[((entry_data_s *)display_data)->cursor_pos] = current;
 
     memcpy(display_buffer, &buffer[((entry_data_s *)display_data)->offset], DISPLAY_SIZE);
+    update_display_output_buffer();
     send_display_buffer();
 
     ((entry_data_s *)display_data)->resume_blink = ((entry_data_s *)display_data)->steps + 5;
 }
 
-void 
+void ICACHE_FLASH_ATTR
 entry_down_handler(void)
 {
     char *buffer = ((entry_data_s *)display_data)->current_text;
@@ -33,12 +34,13 @@ entry_down_handler(void)
     buffer[((entry_data_s *)display_data)->cursor_pos] = current;
 
     memcpy(display_buffer, &buffer[((entry_data_s *)display_data)->offset], DISPLAY_SIZE);
+    update_display_output_buffer();
     send_display_buffer();
 
     ((entry_data_s *)display_data)->resume_blink = ((entry_data_s *)display_data)->steps + 5;
 }
 
-void 
+void ICACHE_FLASH_ATTR 
 entry_right_handler(void)
 {
     char *buffer = ((entry_data_s *)display_data)->current_text;
@@ -51,13 +53,14 @@ entry_right_handler(void)
             ((entry_data_s *)display_data)->offset++;
         }
         memcpy(display_buffer, &buffer[((entry_data_s *)display_data)->offset], DISPLAY_SIZE);
+        update_display_output_buffer();
         send_display_buffer();
 
         ((entry_data_s *)display_data)->resume_blink = ((entry_data_s *)display_data)->steps + 5;
     }
 }
 
-void 
+void ICACHE_FLASH_ATTR 
 entry_left_handler(void)
 {
     char *buffer = ((entry_data_s *)display_data)->current_text;
@@ -70,13 +73,14 @@ entry_left_handler(void)
             ((entry_data_s *)display_data)->offset--;
         }
         memcpy(display_buffer, &buffer[((entry_data_s *)display_data)->offset], DISPLAY_SIZE);
+        update_display_output_buffer();
         send_display_buffer();
 
         ((entry_data_s *)display_data)->resume_blink = ((entry_data_s *)display_data)->steps + 5;
     }
 }
 
-uint8_t 
+uint8_t ICACHE_FLASH_ATTR 
 entry_display(void *data)
 {
     entry_data_s *s_data = (entry_data_s *)data;
@@ -87,20 +91,8 @@ entry_display(void *data)
 
     if((s_data->steps % 5) == 0 && (s_data->steps > s_data->resume_blink))
     {
-        if(s_data->current_text[s_data->cursor_pos] == ' ')
-        {
-            if(display_buffer[cursor_phy_offset] == ' ')
-                display_buffer[cursor_phy_offset] = '_';
-            else
-                display_buffer[cursor_phy_offset] = ' ';
-        }
-        else
-        {
-            if(display_buffer[cursor_phy_offset] == s_data->current_text[s_data->cursor_pos])
-                display_buffer[cursor_phy_offset] = '_';
-            else
-                display_buffer[cursor_phy_offset] = s_data->current_text[s_data->cursor_pos];
-        }
+        display_set_raw(cursor_phy_offset, display_get_raw(cursor_phy_offset) ^ 1 << 14);
+        send_display_buffer();
     }
     system_flags.display_dirty = 1;
 
@@ -110,13 +102,8 @@ entry_display(void *data)
 void ICACHE_FLASH_ATTR
 entry_setup(void)
 {
-    //Put up the enter nic prompt
-    ((entry_data_s *)display_data)->steps = 0;
-    ((entry_data_s *)display_data)->cursor_pos = 0;
-    ((entry_data_s *)display_data)->offset = 0;
-    ((entry_data_s *)display_data)->resume_blink = 0;
-    //memset(((entry_data_s *)display_data)->current_text, ' ', MAX_NICK_SIZE);
-    memcpy(((entry_data_s *)display_data)->current_text, "ABCDEFGHIJKLMNOP", MAX_NICK_SIZE);
+    memset(display_data, 0, DISPLAY_DATA_SIZE);
+    memset(((entry_data_s *)display_data)->current_text, ' ', MAX_NICK_SIZE);
     ((entry_data_s *)display_data)->current_text[MAX_NICK_SIZE] = 0;
     button_up_handler = &entry_up_handler;
     button_down_handler = &entry_down_handler;
@@ -124,4 +111,15 @@ entry_setup(void)
     button_fwd_handler = &entry_right_handler;
     current_display_function = &entry_display;
     memcpy(display_buffer, ((entry_data_s *)display_data)->current_text, DISPLAY_SIZE);
+}
+
+void ICACHE_FLASH_ATTR
+entry_teardown(void)
+{
+    memset(display_data, 0, DISPLAY_DATA_SIZE);
+    button_up_handler = 0;
+    button_down_handler = 0;
+    button_back_handler = 0;
+    button_fwd_handler = 0;
+    current_display_function = 0;
 }
