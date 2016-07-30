@@ -12,6 +12,7 @@
 #include "entry.h"
 #include "debug.h"
 #include "bling.h"
+#include "menu.h"
 #include "user_main.h"
 
 system_flags_s system_flags;
@@ -241,6 +242,13 @@ void ICACHE_FLASH_ATTR
 button_right_short_press(void)
 {
     debug_print("Right short press\r\n");
+    if(system_flags.mode == MODE_BLING)
+    {
+        system_flags.mode = MODE_MENU;
+        menu_setup((menu_data_s *)display_data);
+        menu_add_item((menu_data_s *)display_data, 0, "BRIGHT");
+        menu_add_item((menu_data_s *)display_data, 1, "RESET");
+    }
     if(button_fwd_handler != 0)
         button_fwd_handler();
 }
@@ -287,6 +295,16 @@ void loop(os_event_t *events)
     {
         if(current_display_function((void *)display_data) == 1)
         {
+            switch(system_flags.mode)
+            {
+                case MODE_BLING:
+                    random_bling_select();
+                    break;;
+                case MODE_MENU:
+                    menu_teardown((menu_data_s *)display_data);
+                    system_flags.mode = MODE_BLING;
+                    break;;
+            }
             if(system_flags.mode == MODE_BLING)
             {
                 random_bling_select();

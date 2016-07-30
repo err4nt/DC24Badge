@@ -7,6 +7,7 @@
 #define MODE_BLING 1
 #define MODE_ENTRY 2
 #define MODE_DELAY 3
+#define MODE_MENU 4
 
 typedef struct {
     uint8_t display_dirty:1;
