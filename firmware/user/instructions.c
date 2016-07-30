@@ -62,6 +62,7 @@ instructions_setup(uint8_t delay)
     current_display_function = &instructions_display;
 
     memcpy(display_buffer, s_data->instruction_text[0], 8);
+    system_flags.mode = MODE_NONE;
 }
 
 void ICACHE_FLASH_ATTR

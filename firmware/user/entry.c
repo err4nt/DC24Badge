@@ -111,6 +111,9 @@ entry_setup(void)
     button_fwd_handler = &entry_right_handler;
     current_display_function = &entry_display;
     memcpy(display_buffer, ((entry_data_s *)display_data)->current_text, DISPLAY_SIZE);
+    update_display_output_buffer();
+    send_display_buffer();
+    system_flags.mode = MODE_ENTRY;
 }
 
 void ICACHE_FLASH_ATTR
@@ -122,4 +125,5 @@ entry_teardown(void)
     button_back_handler = 0;
     button_fwd_handler = 0;
     current_display_function = 0;
+    system_flags.mode = MODE_NONE;
 }

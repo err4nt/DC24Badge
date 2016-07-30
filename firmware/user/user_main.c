@@ -11,6 +11,7 @@
 #include "ht16k33.h"
 #include "entry.h"
 #include "debug.h"
+#include "bling.h"
 #include "user_main.h"
 
 system_flags_s system_flags;
@@ -28,8 +29,6 @@ button_handler_f button_long_up_handler = 0;
 button_handler_f button_long_down_handler = 0;
 button_handler_f button_long_back_handler = 0;
 button_handler_f button_long_fwd_handler = 0;
-
-uint8_t current_menu_item = MENU_NONE;
 
 #define user_procTaskPrio        1 
 #define user_procTaskQueueLen    1
@@ -277,7 +276,7 @@ i2c_init()
 
 void loop(os_event_t *events)
 {
-    if(system_flags.display_dirty == 1)
+    if(system_flags.display_dirty == 1 && system_flags.mode != MODE_ENTRY)
     {
         update_display_output_buffer();
         send_display_buffer();
@@ -288,73 +287,26 @@ void loop(os_event_t *events)
     {
         if(current_display_function((void *)display_data) == 1)
         {
-            //Pick new display function
+            if(system_flags.mode == MODE_BLING)
+            {
+                random_bling_select();
+            }
+        }
+    }
+    else
+    {
+        debug_print("No display function, Mode: %d\r\n", system_flags.mode);
+        switch(system_flags.mode)
+        {
+            case MODE_BLING:
+                debug_print("Select display function\r\n");
+                random_bling_select();
+                break;
         }
     }
 
     os_delay_us(50000);
     system_os_post(user_procTaskPrio, 0, 0 );
-}
-
-uint8_t ICACHE_FLASH_ATTR
-display_text_sneakers(void *data)
-{
-    sneakers_data_s *s_data = (sneakers_data_s *)data;
-    s_data->steps++;
-    uint8_t scan = 0;
-
-    if((s_data->steps % 10 == 9)){
-        uint8_t reveal;
-        //find a character to reveal
-        os_get_random(&reveal, 1);
-        reveal = reveal % 8;
-        while(((s_data->random_or_not >> reveal) & 1) == 0)
-        {
-            //already did that one, pick again
-            os_get_random(&reveal, 1);
-            reveal = reveal % 8;
-        }
-        //mark the character for reveal
-        s_data->random_or_not &= ~(1 << reveal);
-    }
-
-    while(scan < 8)
-    {
-        if(((s_data->random_or_not >> scan) & 1) == 1)
-        {
-            //put random char there
-            char c;
-            os_get_random(&c, 1);
-            display_buffer[scan] = c;
-        }
-        else
-        {
-            //put real char there
-            display_buffer[scan] = s_data->target_text[scan]; 
-        }
-        scan++;
-    }
-    system_flags.display_dirty = 1;
-
-    if(s_data->random_or_not == 0)
-    {
-       //Done
-        return 1;
-    }
-    else
-    {
-        return 0;
-    }
-}
-
-void ICACHE_FLASH_ATTR
-display_text_build(void *data)
-{
-}
-
-void ICACHE_FLASH_ATTR
-display_text_scroll(void *data)
-{
 }
 
 void ICACHE_FLASH_ATTR
@@ -380,9 +332,11 @@ nick_entry_done_handler(void)
     eeprom_write_block(&settings, 0, sizeof(settings_s));
 
     memcpy(display_buffer, "SAVED   ", 8);
-    system_flags.display_dirty = 1;
+    update_display_output_buffer();
+    send_display_buffer();
     entry_teardown();
     button_long_fwd_handler = 0;
+    system_flags.mode = MODE_BLING;
 }
 
 void ICACHE_FLASH_ATTR
@@ -412,24 +366,14 @@ user_init()
     display_clear();
     os_printf("Display setup done\r\n");
 
-    eeprom_write_byte(0x0000, 0x33);
+    //eeprom_write_byte(0x0000, 0x33);
     //os_printf("%x\r\n", eeprom_read_byte(0x0000));
 
     eeprom_read_block(&settings, 0, sizeof(settings_s));
     if(settings.header == 0xDE)
     {
         debug_print("EEPROM settings loaded\r\n");
-        if(strlen(settings.nick) < 9)
-        {
-            //Sorry people with long nics, not enough room on the display to do the cool transition
-            strncpy(((sneakers_data_s *)display_data)->target_text, settings.nick, 8);
-            ((sneakers_data_s *)display_data)->steps = 0;
-            ((sneakers_data_s *)display_data)->random_or_not = 0xff;
-            current_display_function = &display_text_sneakers;
-        }
-        else
-        {
-       }
+        system_flags.mode = MODE_BLING;
     }
     else
     {

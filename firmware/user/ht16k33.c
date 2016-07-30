@@ -68,7 +68,7 @@ display_init()
     display_clear();
 
     display_state(1);
-    display_brightness(10);
+    display_brightness(5);
 }
 
 void ICACHE_FLASH_ATTR
