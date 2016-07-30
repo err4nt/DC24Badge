@@ -245,12 +245,13 @@ button_right_short_press(void)
     if(system_flags.mode == MODE_BLING)
     {
         system_flags.mode = MODE_MENU;
-        menu_setup((menu_data_s *)display_data);
-        menu_add_item((menu_data_s *)display_data, 0, "BRIGHT");
-        menu_add_item((menu_data_s *)display_data, 1, "RESET");
+        current_display_function = 0;
     }
-    if(button_fwd_handler != 0)
-        button_fwd_handler();
+    else
+    {
+        if(button_fwd_handler != 0)
+            button_fwd_handler();
+    }
 }
 
 /* 
@@ -284,6 +285,8 @@ i2c_init()
 
 void loop(os_event_t *events)
 {
+    uint8_t result;
+
     if(system_flags.display_dirty == 1 && system_flags.mode != MODE_ENTRY)
     {
         update_display_output_buffer();
@@ -299,11 +302,22 @@ void loop(os_event_t *events)
             {
                 case MODE_BLING:
                     random_bling_select();
-                    break;;
+                    break;
                 case MODE_MENU:
+                    result = ((menu_data_s *)display_data)->result;
                     menu_teardown((menu_data_s *)display_data);
+                    switch(result)
+                    {
+                        case MENU_ITEM_RESET:
+                            eeprom_write_byte(0x0000, 0x00); //Clear the settings header
+                            system_restart();
+                            break;
+                        case MENU_CANCEL:
+                            system_flags.mode = MODE_BLING;
+                            break;
+                    }
                     system_flags.mode = MODE_BLING;
-                    break;;
+                    break;
             }
             if(system_flags.mode == MODE_BLING)
             {
@@ -319,6 +333,11 @@ void loop(os_event_t *events)
             case MODE_BLING:
                 debug_print("Select display function\r\n");
                 random_bling_select();
+                break;
+            case MODE_MENU:
+                menu_setup((menu_data_s *)display_data);
+                menu_add_item((menu_data_s *)display_data, 0, "BRIGHT");
+                menu_add_item((menu_data_s *)display_data, 1, "RESET");
                 break;
         }
     }

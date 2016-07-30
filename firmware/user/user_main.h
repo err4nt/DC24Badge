@@ -9,6 +9,9 @@
 #define MODE_DELAY 3
 #define MODE_MENU 4
 
+#define MENU_ITEM_BRIGHTNESS 0
+#define MENU_ITEM_RESET 1
+
 typedef struct {
     uint8_t display_dirty:1;
     uint8_t mode:7;

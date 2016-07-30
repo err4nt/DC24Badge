@@ -42,6 +42,9 @@ menu_down_handler(void)
 void ICACHE_FLASH_ATTR
 menu_right_handler(void)
 {
+    menu_data_s *s_data = (menu_data_s *)display_data;
+
+    s_data->result = s_data->index;
 }
 
 void ICACHE_FLASH_ATTR 
@@ -55,6 +58,7 @@ menu_left_handler(void)
 void ICACHE_FLASH_ATTR
 menu_setup(menu_data_s *data)
 {
+    debug_print("Menu setup enter\r\n");
     memset(data, 0, sizeof(menu_data_s));
     button_up_handler = &menu_up_handler;
     button_down_handler = &menu_down_handler;
@@ -64,6 +68,7 @@ menu_setup(menu_data_s *data)
     system_flags.mode = MODE_MENU;
     data->cancel_steps = 200;
     data->result = MENU_RUNNING;
+    debug_print("Menu setup done\r\n");
 }
 
 void ICACHE_FLASH_ATTR
