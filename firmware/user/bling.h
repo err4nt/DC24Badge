@@ -9,6 +9,12 @@ typedef struct {
     uint8_t steps;
 } sneakers_data_s;
 
+typedef struct {
+    uint8_t steps;
+    char text[16];
+    uint8_t offset;
+} scroll_data_s;
+
 uint8_t display_text_sneakers(void *data);
 
 extern  display_function_f display_handlers[];

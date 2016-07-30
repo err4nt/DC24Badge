@@ -70,9 +70,44 @@ display_text_build(void *data)
 {
 }
 
-void ICACHE_FLASH_ATTR
+uint8_t ICACHE_FLASH_ATTR
 display_text_scroll(void *data)
 {
+    if(data == 0)
+    {
+        data = (void *)display_data;
+        memset((scroll_data_s *)data, 0, sizeof(scroll_data_s));
+        strncpy(((scroll_data_s *)data)->text, settings.nick, 16);
+        ((scroll_data_s *)data)->steps = 0;
+        ((scroll_data_s *)data)->offset = 0;
+    }
+    scroll_data_s *s_data = (scroll_data_s *)data;
+    s_data->steps++;
+
+    if((s_data->steps % 4) == 0)
+    {
+        s_data->offset++;
+    }
+
+    if(s_data->offset > DISPLAY_SIZE)
+    {
+        memcpy(display_buffer, s_data->text+(s_data->offset-DISPLAY_SIZE), 16-s_data->offset);
+    }
+    else
+    {
+        memcpy(display_buffer+(DISPLAY_SIZE-s_data->offset), s_data->text, s_data->offset);
+    }
+    system_flags.display_dirty = 1;
+
+    if(s_data->offset == 16)
+    {
+       //Done
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
 }
 
 void ICACHE_FLASH_ATTR
@@ -83,7 +118,8 @@ random_bling_select(void)
 
     //os_get_random(&random, 1);
     //random %= display_count-1;
+    //debug_print("Picking display %d", random);
     //current_display_function = display_handlers[random];
-    current_display_function = &display_text_sneakers;
+    current_display_function = &display_text_scroll;
     current_display_function(0);
 }

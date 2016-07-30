@@ -6,10 +6,12 @@
 #define MODE_NONE 0
 #define MODE_BLING 1
 #define MODE_ENTRY 2
+#define MODE_DELAY 3
 
 typedef struct {
     uint8_t display_dirty:1;
     uint8_t mode:7;
+    uint8_t delay_count;
 } system_flags_s;
 
 typedef struct {
