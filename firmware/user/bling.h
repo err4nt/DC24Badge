@@ -7,6 +7,7 @@ typedef struct {
     uint8_t random_or_not;
     char target_text[8];
     uint8_t steps;
+    uint8_t end_delay;
 } sneakers_data_s;
 
 typedef struct {
@@ -16,6 +17,7 @@ typedef struct {
 } scroll_data_s;
 
 uint8_t display_text_sneakers(void *data);
+uint8_t display_text_scroll(void *data);
 
 extern  display_function_f display_handlers[];
 
