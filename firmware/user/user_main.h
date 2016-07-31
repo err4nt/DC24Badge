@@ -28,6 +28,7 @@ typedef uint8_t (*display_function_f)(void *);
 typedef void (*button_handler_f)(void);
 
 extern uint8_t display_data[DISPLAY_DATA_SIZE];
+extern char display_text[17];
 extern system_flags_s system_flags;
 extern settings_s settings;
 extern display_function_f current_display_function;

@@ -19,6 +19,7 @@ system_flags_s system_flags;
 settings_s settings;
 
 uint8_t display_data[DISPLAY_DATA_SIZE];
+char display_text[17];
 display_function_f current_display_function = 0;
 
 //Button handlers
@@ -301,6 +302,7 @@ void loop(os_event_t *events)
             switch(system_flags.mode)
             {
                 case MODE_BLING:
+                    random_text_select();
                     random_bling_select();
                     break;
                 case MODE_MENU:
@@ -319,10 +321,6 @@ void loop(os_event_t *events)
                     system_flags.mode = MODE_BLING;
                     break;
             }
-            if(system_flags.mode == MODE_BLING)
-            {
-                random_bling_select();
-            }
         }
     }
     else
@@ -332,6 +330,7 @@ void loop(os_event_t *events)
         {
             case MODE_BLING:
                 debug_print("Select display function\r\n");
+                random_text_select();
                 random_bling_select();
                 break;
             case MODE_MENU:

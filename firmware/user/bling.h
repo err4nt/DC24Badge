@@ -22,5 +22,6 @@ uint8_t display_text_scroll(void *data);
 extern  display_function_f display_handlers[];
 
 void random_bling_select(void);
+void random_text_select(void);
 
 #endif

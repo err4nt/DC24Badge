@@ -7,12 +7,27 @@
 
 display_function_f display_handlers[] = {&display_text_sneakers, &display_text_scroll};
 
-uint8_t ICACHE_FLASH_ATTR
+#define TEXT_NICK 3
+
+char *random_text[] = {
+    "  DC24  ",
+    "VOID.ORG",
+    "DEF CON",
+    (char *)TEXT_NICK
+};
+
+#define RANDOM_TEXT_COUNT 4
+
+
+uint8_t
 display_text_sneakers(void *data)
 {
     if(data == 0)
     {
-        strncpy(((sneakers_data_s *)display_data)->target_text, settings.nick, 8);
+        if(strlen(display_text) > 8)
+            return 1;
+        memset(((sneakers_data_s *)display_data), 0, sizeof(sneakers_data_s));
+        strncpy(((sneakers_data_s *)display_data)->target_text, display_text, 8);
         ((sneakers_data_s *)display_data)->steps = 0;
         ((sneakers_data_s *)display_data)->random_or_not = 0xff;
         ((sneakers_data_s *)display_data)->end_delay = 0;
@@ -82,14 +97,14 @@ display_text_build(void *data)
 {
 }
 
-uint8_t ICACHE_FLASH_ATTR
+uint8_t
 display_text_scroll(void *data)
 {
     if(data == 0)
     {
         data = (void *)display_data;
         memset((scroll_data_s *)data, 0, sizeof(scroll_data_s));
-        strncpy(((scroll_data_s *)data)->text, settings.nick, 16);
+        strncpy(((scroll_data_s *)data)->text, display_text, 16);
         memset(display_buffer, 0, DISPLAY_SIZE);
         update_display_output_buffer();
         send_display_buffer();
@@ -133,8 +148,23 @@ random_bling_select(void)
 
     os_get_random(&random, 1);
     random = random % display_count;
-    debug_print("Picking display %d\r\n", random);
     current_display_function = display_handlers[random];
-    //current_display_function = &display_text_scroll;
     current_display_function(0);
+}
+
+void ICACHE_FLASH_ATTR
+random_text_select(void)
+{
+    uint8_t random;
+    os_get_random(&random, 1);
+    random = random % RANDOM_TEXT_COUNT;
+    switch((uint32_t)random_text[random])
+    {
+        case TEXT_NICK:
+            strcpy(display_text, settings.nick);
+            break;
+        default:
+            strcpy(display_text, random_text[random]);
+            break;
+    }
 }
