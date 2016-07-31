@@ -103,8 +103,15 @@ void ICACHE_FLASH_ATTR
 entry_setup(void)
 {
     memset(display_data, 0, DISPLAY_DATA_SIZE);
-    memset(((entry_data_s *)display_data)->current_text, ' ', MAX_NICK_SIZE);
-    ((entry_data_s *)display_data)->current_text[MAX_NICK_SIZE] = 0;
+    if(strlen(display_text) > 0)
+    {
+        strcpy(((entry_data_s *)display_data)->current_text, display_text);
+    }
+    else
+    {
+        memset(((entry_data_s *)display_data)->current_text, ' ', MAX_NICK_SIZE);
+        ((entry_data_s *)display_data)->current_text[MAX_NICK_SIZE] = 0;
+    }
     button_up_handler = &entry_up_handler;
     button_down_handler = &entry_down_handler;
     button_back_handler = &entry_left_handler;

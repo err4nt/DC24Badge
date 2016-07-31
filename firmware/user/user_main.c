@@ -284,67 +284,6 @@ i2c_init()
     debug_print("Leave i2c_init\r\n");
 }
 
-void loop(os_event_t *events)
-{
-    uint8_t result;
-
-    if(system_flags.display_dirty == 1 && system_flags.mode != MODE_ENTRY)
-    {
-        update_display_output_buffer();
-        send_display_buffer();
-        system_flags.display_dirty = 0;
-    }
-
-    if(current_display_function != 0)
-    {
-        if(current_display_function((void *)display_data) == 1)
-        {
-            switch(system_flags.mode)
-            {
-                case MODE_BLING:
-                    random_text_select();
-                    random_bling_select();
-                    break;
-                case MODE_MENU:
-                    result = ((menu_data_s *)display_data)->result;
-                    menu_teardown((menu_data_s *)display_data);
-                    switch(result)
-                    {
-                        case MENU_ITEM_RESET:
-                            eeprom_write_byte(0x0000, 0x00); //Clear the settings header
-                            system_restart();
-                            break;
-                        case MENU_CANCEL:
-                            system_flags.mode = MODE_BLING;
-                            break;
-                    }
-                    system_flags.mode = MODE_BLING;
-                    break;
-            }
-        }
-    }
-    else
-    {
-        debug_print("No display function, Mode: %d\r\n", system_flags.mode);
-        switch(system_flags.mode)
-        {
-            case MODE_BLING:
-                debug_print("Select display function\r\n");
-                random_text_select();
-                random_bling_select();
-                break;
-            case MODE_MENU:
-                menu_setup((menu_data_s *)display_data);
-                menu_add_item((menu_data_s *)display_data, 0, "BRIGHT");
-                menu_add_item((menu_data_s *)display_data, 1, "RESET");
-                break;
-        }
-    }
-
-    os_delay_us(50000);
-    system_os_post(user_procTaskPrio, 0, 0 );
-}
-
 void ICACHE_FLASH_ATTR
 nick_entry_done_handler(void)
 {
@@ -379,9 +318,78 @@ void ICACHE_FLASH_ATTR
 enter_nick_instruction_end_handler(void)
 {
     instructions_teardown();
+    memset(display_text, 0, 17);
     entry_setup();
     button_long_fwd_handler = &nick_entry_done_handler;
 }
+
+void loop(os_event_t *events)
+{
+    uint8_t result;
+
+    if(system_flags.display_dirty == 1 && system_flags.mode != MODE_ENTRY)
+    {
+        update_display_output_buffer();
+        send_display_buffer();
+        system_flags.display_dirty = 0;
+    }
+
+    if(current_display_function != 0)
+    {
+        if(current_display_function((void *)display_data) == 1)
+        {
+            switch(system_flags.mode)
+            {
+                case MODE_BLING:
+                    random_text_select();
+                    random_bling_select();
+                    break;
+                case MODE_MENU:
+                    result = ((menu_data_s *)display_data)->result;
+                    menu_teardown((menu_data_s *)display_data);
+                    switch(result)
+                    {
+                        case MENU_ITEM_RESET:
+                            eeprom_write_byte(0x0000, 0x00); //Clear the settings header
+                            system_restart();
+                            break;
+                        case MENU_ITEM_NICK:
+                            strcpy(display_text, settings.nick);
+                            entry_setup();
+                            button_long_fwd_handler = &nick_entry_done_handler;
+                            break;
+                        case MENU_CANCEL:
+                            system_flags.mode = MODE_BLING;
+                            break;
+                    }
+                    system_flags.mode = MODE_BLING;
+                    break;
+            }
+        }
+    }
+    else
+    {
+        debug_print("No display function, Mode: %d\r\n", system_flags.mode);
+        switch(system_flags.mode)
+        {
+            case MODE_BLING:
+                debug_print("Select display function\r\n");
+                random_text_select();
+                random_bling_select();
+                break;
+            case MODE_MENU:
+                menu_setup((menu_data_s *)display_data);
+                menu_add_item((menu_data_s *)display_data, MENU_ITEM_BRIGHT, "BRIGHT");
+                menu_add_item((menu_data_s *)display_data, MENU_ITEM_NICK, "NICK");
+                menu_add_item((menu_data_s *)display_data, MENU_ITEM_RESET, "RESET");
+                break;
+        }
+    }
+
+    os_delay_us(50000);
+    system_os_post(user_procTaskPrio, 0, 0 );
+}
+
 
 void ICACHE_FLASH_ATTR
 user_init()
