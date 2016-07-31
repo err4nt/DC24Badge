@@ -19,7 +19,9 @@ system_flags_s system_flags;
 settings_s settings;
 
 uint8_t display_data[DISPLAY_DATA_SIZE];
-char display_text[17];
+char display_text[33];
+char heard_nicks[8][17];
+uint8_t heard_nick_index;
 display_function_f current_display_function = 0;
 
 //Button handlers
@@ -141,6 +143,90 @@ uint16_t deauth_packet(uint8_t *buf, uint8_t *client, uint8_t *ap, uint16_t seq)
     return 26;
 }
 
+uint16_t badge_announce_packet(uint8_t *buf)
+{
+    //uint8_t nick_end = 5+(strlen(settings.nick)-2); //Two header bytes, length byte, plus length of nick
+    //buf[0] = 0x80;
+    //buf[1] = 0xAD;
+    //buf[2] = 0x00;
+    //buf[3] = 0x00;
+    //buf[4] = strlen(settings.nick)-2;
+    //memcpy(&buf[5], settings.nick, strlen(settings.nick)-2);
+    //return nick_end;
+    buf[0] = 0x80;
+    buf[1] = 0x00;
+    buf[2] = 0x00;
+    buf[3] = 0x00;
+    buf[4] = 0xBE;
+    buf[5] = 0xEF;
+    buf[6] = 0xDE;
+    buf[7] = 0xAD;
+    buf[8] = 0xFF;
+    buf[9] = 0xFF;
+    buf[10] = 0xDE;
+    buf[11] = 0xAD;
+    buf[12] = 0xBE;
+    buf[13] = 0xEF;
+    buf[14] = 0xFF;
+    buf[15] = 0xFF;
+    buf[16] = 0xBE;
+    buf[17] = 0xEE;
+    buf[18] = 0xEE;
+    buf[19] = 0xEF;
+    buf[20] = 0xFF;
+    buf[21] = 0xFF;
+    buf[22] = 0xC0;
+    buf[23] = 0x6C;
+    buf[24] = 0x83;
+    buf[25] = 0x51;
+    buf[26] = 0xF7;
+    buf[27] = 0x8F;
+    buf[28] = 0x0F;
+    buf[29] = 0x00;
+    buf[30] = 0x00;
+    buf[31] = 0x00;
+    buf[32] = 0x64;
+    buf[33] = 0x00;
+    buf[34] = 0x01;
+    buf[35] = 0x04;
+    strncpy(&buf[36], settings.nick, 17);
+    buf[56] = 0x04;
+
+    return 56; 
+}
+
+/*
+ * Nick cache management
+ */
+void ICACHE_FLASH_ATTR
+add_heard_nick(char *nick)
+{
+    uint8_t scan = 0;
+    
+    for(scan = 0; scan < 8; scan++)
+    {
+        if(strcmp(heard_nicks[scan], nick) == 0)
+        {
+            //Nick isin't new
+            return;
+        }
+    }    
+
+    heard_nick_index++;
+    if(heard_nick_index == 8)
+        heard_nick_index = 0;
+    strncpy(heard_nicks[heard_nick_index], nick, 17);
+}
+
+/*
+ * Send badge announce packet
+ */
+void badge_announce(void)
+{
+    uint16_t size = badge_announce_packet(packet_buffer);
+    uint8_t result = wifi_send_pkt_freedom(packet_buffer, size, 0);
+}
+
 /* Sends deauth packets. */
 void deauth(void *arg)
 {
@@ -158,6 +244,14 @@ promisc_cb(uint8_t *buf, uint16_t len)
         struct RxControl *sniffer = (struct RxControl*) buf;
     } else if (len == 128) {
         struct sniffer_buf2 *sniffer = (struct sniffer_buf2*) buf;
+        if(sniffer->buf[4] == 0xBE && sniffer->buf[5] == 0xEF && sniffer->buf[6] == 0xDE && sniffer->buf[7] == 0xAD)
+        {
+            char nick_buffer[17];
+            strncpy(nick_buffer, &sniffer->buf[36], 17);
+            add_heard_nick(nick_buffer);
+            system_flags.have_heard_nick = 1;
+            debug_print("Got badge packet: %s\r\n", nick_buffer);
+        }
     } else {
         struct sniffer_buf *sniffer = (struct sniffer_buf*) buf;
         int i=0;
@@ -343,6 +437,7 @@ void loop(os_event_t *events)
                 case MODE_BLING:
                     random_text_select();
                     random_bling_select();
+                    badge_announce();
                     break;
                 case MODE_MENU:
                     result = ((menu_data_s *)display_data)->result;
@@ -398,9 +493,10 @@ user_init()
     os_printf("\n\nSDK version:%s\n", system_get_sdk_version());
     os_printf("\n\nWelcome to DEFCON 24\n");
     os_printf("\n\nThis badge was a labor of love and coffee by Errant Librarian (hardware and firmware) and nodoze (assembly and bad ideas)\n");
-    
+    os_printf("\n\nvoidptr.org/dc24\n");
+ 
     // Promiscuous works only with station mode
-    //wifi_set_opmode(STATION_MODE);
+    wifi_set_opmode(STATION_MODE);
 
     gpio_init();
 
@@ -409,9 +505,6 @@ user_init()
     display_init();
     display_clear();
     os_printf("Display setup done\r\n");
-
-    //eeprom_write_byte(0x0000, 0x33);
-    //os_printf("%x\r\n", eeprom_read_byte(0x0000));
 
     eeprom_read_block(&settings, 0, sizeof(settings_s));
     if(settings.header == 0xDE)
@@ -440,5 +533,5 @@ user_init()
     // os_timer_arm(&deauth_timer, CHANNEL_HOP_INTERVAL, 1);
     
     // Continue to 'sniffer_system_init_done'
-    //system_init_done_cb(sniffer_system_init_done);
+    system_init_done_cb(sniffer_system_init_done);
 }

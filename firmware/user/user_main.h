@@ -13,23 +13,31 @@
 #define MENU_ITEM_NICK 1
 #define MENU_ITEM_RESET 2 
 
+#define WIFI_MODE_BADGE 0
+#define WIFI_MODE_FAKEAP 1
+#define WIFI_MODE_SNIFF 2
+
 typedef struct {
     uint8_t display_dirty:1;
     uint8_t mode:7;
     uint8_t delay_count;
+    uint8_t have_heard_nick;
 } system_flags_s;
 
 typedef struct {
     uint8_t header;
     char nick[17];
     uint8_t brightness;
+    uint8_t channel;
+    uint8_t mode;
 } settings_s;
 
 typedef uint8_t (*display_function_f)(void *);
 typedef void (*button_handler_f)(void);
 
 extern uint8_t display_data[DISPLAY_DATA_SIZE];
-extern char display_text[17];
+extern char display_text[33];
+extern char heard_nicks[8][17];
 extern system_flags_s system_flags;
 extern settings_s settings;
 extern display_function_f current_display_function;

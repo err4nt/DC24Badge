@@ -8,15 +8,17 @@
 display_function_f display_handlers[] = {&display_text_sneakers, &display_text_scroll};
 
 #define TEXT_NICK 3
+#define TEXT_GREET 4
 
 char *random_text[] = {
     "  DC24  ",
-    "VOID.ORG",
+    "VOIDPTR.ORG",
     "DEF CON",
-    (char *)TEXT_NICK
+    (char *)TEXT_NICK,
+    (char *)TEXT_GREET,
 };
 
-#define RANDOM_TEXT_COUNT 4
+#define RANDOM_TEXT_COUNT 5 
 
 
 uint8_t
@@ -104,7 +106,9 @@ display_text_scroll(void *data)
     {
         data = (void *)display_data;
         memset((scroll_data_s *)data, 0, sizeof(scroll_data_s));
-        strncpy(((scroll_data_s *)data)->text, display_text, 16);
+        memset(&((scroll_data_s *)data)->text, ' ', 50);
+        strncpy(&((scroll_data_s *)data)->text[DISPLAY_SIZE], display_text, 33);
+        strcpy(&((scroll_data_s *)data)->text[strlen(((scroll_data_s *)data)->text)], "        ");
         memset(display_buffer, 0, DISPLAY_SIZE);
         update_display_output_buffer();
         send_display_buffer();
@@ -119,17 +123,10 @@ display_text_scroll(void *data)
         s_data->offset++;
     }
 
-    if(s_data->offset > DISPLAY_SIZE)
-    {
-        memcpy(display_buffer, s_data->text+(s_data->offset-DISPLAY_SIZE), 16-s_data->offset);
-    }
-    else
-    {
-        memcpy(display_buffer+(DISPLAY_SIZE-s_data->offset), s_data->text, s_data->offset);
-    }
+    memcpy(display_buffer, &s_data->text[s_data->offset], DISPLAY_SIZE);
     system_flags.display_dirty = 1;
 
-    if(s_data->offset == 16)
+    if(s_data->offset == strlen(((scroll_data_s *)data)->text)-1)
     {
        //Done
         return 1;
@@ -155,6 +152,7 @@ random_bling_select(void)
 void ICACHE_FLASH_ATTR
 random_text_select(void)
 {
+    uint8_t search;
     uint8_t random;
     os_get_random(&random, 1);
     random = random % RANDOM_TEXT_COUNT;
@@ -163,6 +161,23 @@ random_text_select(void)
         case TEXT_NICK:
             strcpy(display_text, settings.nick);
             break;
+        case TEXT_GREET:
+            if(system_flags.have_heard_nick == 1)
+            {
+                search = 0;
+                while(search == 0)
+                {
+                    os_get_random(&random, 1);
+                    random = random % 8;
+                    if(strlen(heard_nicks[random]) > 0)
+                    {
+                        search = random;
+                    }
+                }
+                strcpy(display_text, "Hello ");
+                strcpy(&display_text[6], heard_nicks[random]);
+            }
+            break;       
         default:
             strcpy(display_text, random_text[random]);
             break;

@@ -12,7 +12,7 @@ typedef struct {
 
 typedef struct {
     uint8_t steps;
-    char text[16];
+    char text[50];
     uint8_t offset;
 } scroll_data_s;
 
