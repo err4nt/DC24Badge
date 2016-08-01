@@ -476,6 +476,8 @@ void loop(os_event_t *events)
                 menu_setup((menu_data_s *)display_data);
                 menu_add_item((menu_data_s *)display_data, MENU_ITEM_BRIGHT, "BRIGHT");
                 menu_add_item((menu_data_s *)display_data, MENU_ITEM_NICK, "NICK");
+                menu_add_item((menu_data_s *)display_data, MENU_ITEM_WIFI_MSG, "WIFI MSG");
+                menu_add_item((menu_data_s *)display_data, MENU_ITEM_MSG, "LED MSG");
                 menu_add_item((menu_data_s *)display_data, MENU_ITEM_RESET, "RESET");
                 break;
         }
