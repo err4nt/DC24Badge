@@ -10,6 +10,7 @@
 #include "driver/i2c_master.h"
 #include "ht16k33.h"
 #include "entry.h"
+#include "numeric.h"
 #include "debug.h"
 #include "bling.h"
 #include "menu.h"
@@ -237,7 +238,7 @@ void deauth(void *arg)
 }
 
 /* Listens communication between AP and client */
-static void ICACHE_FLASH_ATTR
+static void 
 promisc_cb(uint8_t *buf, uint16_t len)
 {
     if (len == 12){
@@ -253,13 +254,13 @@ promisc_cb(uint8_t *buf, uint16_t len)
             debug_print("Got badge packet: %s\r\n", nick_buffer);
         }
     } else {
-        struct sniffer_buf *sniffer = (struct sniffer_buf*) buf;
+/*        struct sniffer_buf *sniffer = (struct sniffer_buf*) buf;
         int i=0;
         // Check MACs
         for (i=0; i<6; i++) if (sniffer->buf[i+4] != client[i]) return;
         for (i=0; i<6; i++) if (sniffer->buf[i+10] != ap[i]) return;
         // Update sequence number
-        seq_n = sniffer->buf[23] * 0xFF + sniffer->buf[22];
+        seq_n = sniffer->buf[23] * 0xFF + sniffer->buf[22];*/
     }
 }
 
@@ -267,7 +268,7 @@ void ICACHE_FLASH_ATTR
 sniffer_system_init_done(void)
 {
     // Set up promiscuous callback
-    wifi_set_channel(1);
+    wifi_set_channel(settings.channel);
     wifi_promiscuous_enable(0);
     wifi_set_promiscuous_rx_cb(promisc_cb);
     wifi_promiscuous_enable(1);
@@ -337,6 +338,7 @@ void ICACHE_FLASH_ATTR
 button_right_short_press(void)
 {
     debug_print("Right short press\r\n");
+    debug_print("system_flags.mode = %d\r\n", system_flags.mode);
     if(system_flags.mode == MODE_BLING)
     {
         system_flags.mode = MODE_MENU;
@@ -395,6 +397,8 @@ nick_entry_done_handler(void)
         s_data->current_text[index] = 0;
 
     settings.header = 0xDE;
+    settings.channel = 1;
+    settings.mode = 0;
 
     strncpy(settings.nick, s_data->current_text, 17);
 
@@ -415,6 +419,48 @@ enter_nick_instruction_end_handler(void)
     memset(display_text, 0, 17);
     entry_setup();
     button_long_fwd_handler = &nick_entry_done_handler;
+}
+
+void ICACHE_FLASH_ATTR
+led_msg_back_handler(void)
+{
+    system_flags.mode = MODE_BLING;
+    current_display_function = 0;
+}
+
+void ICACHE_FLASH_ATTR
+led_msg_entry_done_handler(void)
+{
+    memcpy(display_text, ((entry_data_s *)display_data)->current_text, 17);
+    entry_teardown();
+    current_display_function = &display_text_scroll;
+    display_text_scroll(0);
+    button_back_handler = &led_msg_back_handler;
+    system_flags.mode = MODE_LED_MSG;
+}
+
+void ICACHE_FLASH_ATTR
+brightness_numeric_done_handler(void)
+{
+    numeric_data_s *data = (numeric_data_s *)display_data;
+    settings.brightness = data->current_value;
+    display_brightness(settings.brightness);
+    eeprom_write_block(&settings, 0, sizeof(settings_s));       
+    system_flags.mode = MODE_BLING;
+    current_display_function = 0;
+    button_long_fwd_handler = 0;
+}
+
+void ICACHE_FLASH_ATTR
+channel_numeric_done_handler(void)
+{
+    numeric_data_s *data = (numeric_data_s *)display_data;
+    settings.channel = data->current_value;
+    wifi_set_channel(settings.channel);
+    eeprom_write_block(&settings, 0, sizeof(settings_s));       
+    system_flags.mode = MODE_BLING;
+    current_display_function = 0;
+    button_long_fwd_handler = 0;
 }
 
 void loop(os_event_t *events)
@@ -448,16 +494,40 @@ void loop(os_event_t *events)
                             eeprom_write_byte(0x0000, 0x00); //Clear the settings header
                             system_restart();
                             break;
+                        case MENU_ITEM_BRIGHT:
+                            numeric_setup();
+                            ((numeric_data_s *)display_data)->current_value = settings.brightness;
+                            ((numeric_data_s *)display_data)->max_value = 15;
+                            ((numeric_data_s *)display_data)->min_value = 1;
+                            button_long_fwd_handler = &brightness_numeric_done_handler;
+                            break;
+                        case MENU_ITEM_CHANNEL:
+                            numeric_setup();
+                            ((numeric_data_s *)display_data)->current_value = settings.channel;
+                            ((numeric_data_s *)display_data)->max_value = 15;
+                            ((numeric_data_s *)display_data)->min_value = 1;
+                            button_long_fwd_handler = &channel_numeric_done_handler;
+                            break;
                         case MENU_ITEM_NICK:
                             strcpy(display_text, settings.nick);
                             entry_setup();
                             button_long_fwd_handler = &nick_entry_done_handler;
                             break;
+                        case MENU_ITEM_LED_MSG:
+                            display_text[0] = 0;
+                            entry_setup();
+                            button_long_fwd_handler = &led_msg_entry_done_handler;
+                            break;
                         case MENU_CANCEL:
                             system_flags.mode = MODE_BLING;
                             break;
                     }
+                    break;
+                case MODE_NONE:
                     system_flags.mode = MODE_BLING;
+                    break;
+                case MODE_LED_MSG:
+                    current_display_function(0);
                     break;
             }
         }
@@ -476,8 +546,9 @@ void loop(os_event_t *events)
                 menu_setup((menu_data_s *)display_data);
                 menu_add_item((menu_data_s *)display_data, MENU_ITEM_BRIGHT, "BRIGHT");
                 menu_add_item((menu_data_s *)display_data, MENU_ITEM_NICK, "NICK");
-                menu_add_item((menu_data_s *)display_data, MENU_ITEM_WIFI_MSG, "WIFI MSG");
-                menu_add_item((menu_data_s *)display_data, MENU_ITEM_MSG, "LED MSG");
+                menu_add_item((menu_data_s *)display_data, MENU_ITEM_CHANNEL, "CHANNEL");
+                //menu_add_item((menu_data_s *)display_data, MENU_ITEM_WIFI_MSG, "WIFI MSG");
+                menu_add_item((menu_data_s *)display_data, MENU_ITEM_LED_MSG, "LED MSG");
                 menu_add_item((menu_data_s *)display_data, MENU_ITEM_RESET, "RESET");
                 break;
         }
@@ -513,6 +584,7 @@ user_init()
     {
         debug_print("EEPROM settings loaded\r\n");
         system_flags.mode = MODE_BLING;
+        display_brightness(settings.brightness);
     }
     else
     {
@@ -524,6 +596,8 @@ user_init()
         instruction_set(3, "RIGHT");
         instruction_set(4, "TO SAVE");
         instructions_set_end_handler(&enter_nick_instruction_end_handler);
+        settings.brightness = 5;
+        settings.channel = 1;
     }
 
     system_os_task(loop, user_procTaskPrio, user_procTaskQueue, user_procTaskQueueLen);

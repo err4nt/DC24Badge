@@ -8,10 +8,13 @@
 #define MODE_ENTRY 2
 #define MODE_DELAY 3
 #define MODE_MENU 4
+#define MODE_LED_MSG 5
 
 #define MENU_ITEM_BRIGHT 0
 #define MENU_ITEM_NICK 1
-#define MENU_ITEM_RESET 2 
+#define MENU_ITEM_CHANNEL 2
+#define MENU_ITEM_LED_MSG 3
+#define MENU_ITEM_RESET 4
 
 #define WIFI_MODE_BADGE 0
 #define WIFI_MODE_FAKEAP 1

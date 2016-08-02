@@ -14,6 +14,7 @@ char *random_text[] = {
     "  DC24  ",
     "VOIDPTR.ORG",
     "DEF CON",
+    "DFIU",
     (char *)TEXT_NICK,
     (char *)TEXT_GREET,
 };

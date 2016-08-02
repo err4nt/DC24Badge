@@ -116,6 +116,6 @@ menu_teardown(menu_data_s *data)
     button_back_handler = 0;
     button_fwd_handler = 0;
     current_display_function = 0;
-    system_flags.mode = MODE_NONE;
+    //system_flags.mode = MODE_NONE;
     debug_print("menu teardown done\r\n");
 }
