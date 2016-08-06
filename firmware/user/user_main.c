@@ -583,6 +583,10 @@ user_init()
     if(settings.header == 0xDE)
     {
         debug_print("EEPROM settings loaded\r\n");
+        if(settings.brightness > 15)
+            settings.brightness = 5;
+        if(settings.channel > 14)
+            settings.channel = 1;
         system_flags.mode = MODE_BLING;
         display_brightness(settings.brightness);
     }

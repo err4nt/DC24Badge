@@ -15,11 +15,13 @@ char *random_text[] = {
     "VOIDPTR.ORG",
     "DEF CON",
     "DFIU",
+    "DISOBEY",
+    "HACK THE PLANET",
     (char *)TEXT_NICK,
     (char *)TEXT_GREET,
 };
 
-#define RANDOM_TEXT_COUNT 5 
+#define RANDOM_TEXT_COUNT 8 
 
 
 uint8_t
@@ -163,6 +165,7 @@ random_text_select(void)
             strcpy(display_text, settings.nick);
             break;
         case TEXT_GREET:
+            debug_print("Should display greeting\r\n");
             if(system_flags.have_heard_nick == 1)
             {
                 search = 0;
